@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\codezeile.o
+./release\parser.o
+./release\steuerwerk.o
+./release\alu.o
+./release\speicher.o
+./release\ram.o
+./release\programmspeicher.o
+./release\programmzaehler.o
+./release\moc_mainwindow.o
+);

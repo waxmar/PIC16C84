@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\codezeile.o
+./debug\parser.o
+./debug\steuerwerk.o
+./debug\alu.o
+./debug\speicher.o
+./debug\ram.o
+./debug\programmspeicher.o
+./debug\programmzaehler.o
+./debug\moc_mainwindow.o
+);
