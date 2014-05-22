@@ -8,8 +8,19 @@ class Ram : public Speicher
 public:
     Ram();
 
+    int lesen(int adresse, int bank);
     int lesen(int adresse);
+    void schreiben(int wert, int adresse, int bank);
     void schreiben(int wert, int adresse);
+
+    void setzeZBit();
+    void loescheZBit();
+    void setzeCBit();
+    void loescheCBit();
+    void setzeDCBit();
+    void loescheDCBit();
+
+    static const int STATUS = 0x03;
 
 private:
     //Speicherbänke definieren S.6

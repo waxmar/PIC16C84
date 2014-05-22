@@ -49,8 +49,14 @@ public:
     void zaehlerstandErhoehen();
     int sprungadresseBerechnen(int befehl);
 
+    bool pruefeCarry(int ergebnis);
+    bool pruefeZero(int ergebnis);
+    bool pruefeDigitCarry(int konstante, int w);
+
 private:
     Steuerwerk* steuerwerk;
+
+    static const bool STOREBACKINF = true;
 };
 
 #endif // ALU_H

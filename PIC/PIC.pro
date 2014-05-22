@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     programmspeicher.cpp \
     programmzaehler.cpp \
     wregister.cpp \
-    stack.cpp
+    stack.cpp \
+    bitoperationen.cpp
 
 HEADERS  += mainwindow.h \
     codezeile.h \
@@ -35,6 +36,7 @@ HEADERS  += mainwindow.h \
     programmspeicher.h \
     programmzaehler.h \
     wregister.h \
-    stack.h
+    stack.h \
+    bitoperationen.h
 
 FORMS    += mainwindow.ui

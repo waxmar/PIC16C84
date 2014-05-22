@@ -3,6 +3,8 @@
 #include "steuerwerk.h"
 #include "ram.h"
 #include "stack.h"
+#include "wregister.h"
+#include "bitoperationen.h"
 
 #include <iostream>
 
@@ -17,35 +19,68 @@ void Alu::zaehlerstandErhoehen()
     steuerwerk->getProgrammzaehler()->schreiben(zaehlerstand+1,Speicher::NOADDRESS);
 }
 
-
-
-
-
 void Alu::ausfuehrenADDWF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = f + w;
+
+    if (pruefeCarry(ergebnis))
+        steuerwerk->getRam()->setzeCBit();
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (pruefeDigitCarry(f,w))
+        steuerwerk->getRam()->setzeDCBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == STOREBACKINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
 }
 
 void Alu::ausfuehrenANDWF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = (f & w);
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == STOREBACKINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
 }
 
 void Alu::ausfuehrenCLRF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int b = ((befehl & 0x0380) >> 7);
+
+    steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(f,b), befehl & 0x007f);
 
 }
 
 void Alu::ausfuehrenCLRW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getW()->schreiben(0, Speicher::NOADDRESS);
+    steuerwerk->getRam()->setzeZBit();
 }
 
 void Alu::ausfuehrenCOMF(int befehl)
 {
-    befehl = ~befehl;
 
-    std::cout << "Komplement = " << befehl << std::endl;
 }
 
 void Alu::ausfuehrenDECF(int befehl)
@@ -135,12 +170,36 @@ void Alu::ausfuehrenBTFSS(int befehl)
 
 void Alu::ausfuehrenADDLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    int konstante = (befehl & 0x00ff);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = konstante + w;
+
+    if (pruefeCarry(ergebnis))
+        steuerwerk->getRam()->setzeCBit();
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (pruefeDigitCarry(konstante,w))
+        steuerwerk->getRam()->setzeDCBit();
+
+    steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 }
 
 void Alu::ausfuehrenANDLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    int konstante = (befehl & 0x00ff);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = (konstante & w);
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 }
 
 void Alu::ausfuehrenCALL(int befehl)
@@ -213,4 +272,20 @@ int Alu::sprungadresseBerechnen(int befehl)
     int sprungadresse = (pclath | konstante);
 
     return sprungadresse;
+}
+
+bool Alu::pruefeCarry(int ergebnis)
+{
+    return (ergebnis >= 0x100);
+}
+
+bool Alu::pruefeZero(int ergebnis)
+{
+    return ((ergebnis & 0x00ff) == 0);
+}
+
+bool Alu::pruefeDigitCarry(int konstante, int w)
+{
+    int ergebnis = (konstante & 0x000f) + (w & 0x000f);
+    return (ergebnis >= 0x10);
 }

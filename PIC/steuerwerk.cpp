@@ -41,6 +41,11 @@ Stack* Steuerwerk::getStack()
     return stack;
 }
 
+Wregister* Steuerwerk::getW()
+{
+    return w;
+}
+
 void Steuerwerk::schrittSteuern()
 {
     int zaehlerstand = programmzaehler->lesen(-1);

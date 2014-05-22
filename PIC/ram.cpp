@@ -1,5 +1,6 @@
 #include "ram.h"
 #include <stdlib.h>
+#include "bitoperationen.h"
 
 Ram::Ram()
 {
@@ -29,27 +30,69 @@ Ram::Ram()
     // Defaultwerte für Speicher initialisieren!
 }
 
+int Ram::lesen(int adresse, int bank)
+{
+    if (adressen[bank][adresse] == NULL)
+        return 256;
+    return *adressen[bank][adresse];
+}
+
 int Ram::lesen(int adresse)
 {
-int aktiveBank = getActiveBank();
-if (adressen[aktiveBank][adresse]==NULL)
-    return 256;
-return *adressen[aktiveBank][adresse];
+    int aktiveBank = getActiveBank();
+    if (adressen[aktiveBank][adresse] == NULL)
+        return 256;
+    return *adressen[aktiveBank][adresse];
 
 }
 
+void Ram::schreiben(int wert, int adresse, int bank)
+{
+    if (adressen[bank][adresse] == NULL)
+        return;
+    *adressen[bank][adresse] = (wert & 0xff);
+}
 
 void Ram::schreiben(int wert, int adresse)
 {
     int aktiveBank = getActiveBank();
-    if (adressen[aktiveBank][adresse]==NULL)
-return;
-     *adressen[aktiveBank][adresse] = (wert&0xff);
+    if (adressen[aktiveBank][adresse] == NULL)
+        return;
+    *adressen[aktiveBank][adresse] = (wert & 0xff);
 }
 
 
 int Ram::getActiveBank()
 {
-return (bank0[0x03]&0x20>>5);
+    return (bank0[0x03]&0x20>>5);
+}
 
+void Ram::setzeZBit()
+{
+     schreiben(Bitoperationen::setzeBit(lesen(STATUS), 2), STATUS, 0);
+}
+
+void Ram::loescheZBit()
+{
+     schreiben(Bitoperationen::loescheBit(lesen(STATUS), 2), STATUS, 0);
+}
+
+void Ram::setzeCBit()
+{
+    schreiben(Bitoperationen::setzeBit(lesen(STATUS),0), STATUS, 0);
+}
+
+void Ram::loescheCBit()
+{
+    schreiben(Bitoperationen::loescheBit(lesen(STATUS),0), STATUS, 0);
+}
+
+void Ram::setzeDCBit()
+{
+    schreiben(Bitoperationen::setzeBit(lesen(STATUS),1), STATUS, 0);
+}
+
+void Ram::loescheDCBit()
+{
+    schreiben(Bitoperationen::loescheBit(lesen(STATUS) ,1), STATUS, 0);
 }

@@ -10,6 +10,7 @@ class Programmzaehler;
 class Alu;
 class Ram;
 class Stack;
+class Wregister;
 
 class Steuerwerk
 {
@@ -20,6 +21,7 @@ public:
     Programmzaehler* getProgrammzaehler();
     Ram* getRam();
     Stack* getStack();
+    Wregister* getW();
     void schrittSteuern();
 
 private:
@@ -28,6 +30,7 @@ private:
     Alu* alu;
     Ram* ram;
     Stack* stack;
+    Wregister* w;
     void befehlErkennen(int befehl);
 };
 
