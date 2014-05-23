@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.3.0
+** Created by: Qt User Interface Compiler version 5.0.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -21,6 +21,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -38,6 +39,7 @@ public:
     QPushButton *go;
     QPushButton *schritt;
     QListWidget *stack;
+    QTableWidget *speicherAnzeige;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -46,7 +48,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(926, 540);
+        MainWindow->resize(1166, 540);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         dateiname = new QLineEdit(centralWidget);
@@ -73,10 +75,13 @@ public:
         stack = new QListWidget(centralWidget);
         stack->setObjectName(QStringLiteral("stack"));
         stack->setGeometry(QRect(20, 190, 101, 192));
+        speicherAnzeige = new QTableWidget(centralWidget);
+        speicherAnzeige->setObjectName(QStringLiteral("speicherAnzeige"));
+        speicherAnzeige->setGeometry(QRect(880, 40, 256, 371));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 926, 21));
+        menuBar->setGeometry(QRect(0, 0, 1166, 27));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

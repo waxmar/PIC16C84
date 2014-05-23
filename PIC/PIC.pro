@@ -24,7 +24,10 @@ SOURCES += main.cpp\
     programmzaehler.cpp \
     wregister.cpp \
     stack.cpp \
-    bitoperationen.cpp
+    bitoperationen.cpp \
+    timersteuerung.cpp \
+    laufzeitzaehler.cpp \
+    interruptsteuerung.cpp
 
 HEADERS  += mainwindow.h \
     codezeile.h \
@@ -37,6 +40,9 @@ HEADERS  += mainwindow.h \
     programmzaehler.h \
     wregister.h \
     stack.h \
-    bitoperationen.h
+    bitoperationen.h \
+    timersteuerung.h \
+    laufzeitzaehler.h \
+    interruptsteuerung.h
 
 FORMS    += mainwindow.ui

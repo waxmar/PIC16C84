@@ -9,6 +9,7 @@
 #include "programmspeicher.h"
 #include "programmzaehler.h"
 #include "stack.h"
+#include "ram.h"
 #include <qlabel.h>
 
 #include "parser.h"
@@ -33,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     programmzaehlerLabel = ui->programmzaehler;
     startButton = ui->go;
     schrittButton = ui->schritt;
+    speicherAnsicht = ui->speicherAnzeige;
+
+    speicherAnsichtInitialisieren();
 
     // Buttonfunktionen definieren
     connect(suchenButton, SIGNAL(clicked()), SLOT(oeffneDateiBrowserDialog()));
@@ -94,8 +98,39 @@ void MainWindow::neuZeichnenProgrammzaehler()
     programmzaehlerLabel->setText(QString::number(steuerwerk->getProgrammzaehler()->lesen(-1)));
 }
 
+void MainWindow::neuZeichnenSpeicherAnsicht()
+{
+    for(int adresse = 0; adresse < 0x50; adresse++)
+    {
+        speicherAnsicht->item(adresse, 1)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 0)));
+        speicherAnsicht->item(adresse, 2)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 1)));
+    }
+}
+
+void MainWindow::speicherAnsichtInitialisieren()
+{
+    speicherAnsicht->setRowCount(0x50);
+
+    speicherAnsicht->setColumnCount(3);
+    speicherAnsicht->setColumnWidth(0, 60);
+    speicherAnsicht->setColumnWidth(1, 36);
+    speicherAnsicht->setColumnWidth(2, 36);
+
+    speicherAnsicht->setHorizontalHeaderItem(0,new QTableWidgetItem("Adresse"));
+    speicherAnsicht->setHorizontalHeaderItem(1,new QTableWidgetItem("Bank0"));
+    speicherAnsicht->setHorizontalHeaderItem(2, new QTableWidgetItem("Bank1"));
+
+    for(int adresse = 0; adresse < 0x50; adresse++)
+    {
+        speicherAnsicht->setItem(adresse, 0, new QTableWidgetItem(QString::number(adresse)));
+        speicherAnsicht->setItem(adresse, 1, new QTableWidgetItem(QString::number(steuerwerk->getRam()->lesen(adresse, 0))));
+        speicherAnsicht->setItem(adresse, 2, new QTableWidgetItem(QString::number(steuerwerk->getRam()->lesen(adresse, 1))));
+    }
+}
+
 void MainWindow::erneuernUI()
 {
     neuZeichnenProgrammzaehler();
     neuZeichnenStack();
+    neuZeichnenSpeicherAnsicht();
 }

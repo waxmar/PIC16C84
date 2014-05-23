@@ -11,6 +11,8 @@ class Alu;
 class Ram;
 class Stack;
 class Wregister;
+class LaufzeitZaehler;
+class TimerSteuerung;
 
 class Steuerwerk
 {
@@ -22,6 +24,9 @@ public:
     Ram* getRam();
     Stack* getStack();
     Wregister* getW();
+    LaufzeitZaehler* getLaufzeitZaehler();
+    TimerSteuerung* getTimerSteuerung();
+
     void schrittSteuern();
 
 private:
@@ -31,6 +36,9 @@ private:
     Ram* ram;
     Stack* stack;
     Wregister* w;
+    LaufzeitZaehler* laufzeit;
+    TimerSteuerung* timerSteuerung;
+
     void befehlErkennen(int befehl);
 };
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>926</width>
+    <width>1166</width>
     <height>540</height>
    </rect>
   </property>
@@ -109,14 +109,24 @@
      </rect>
     </property>
    </widget>
+   <widget class="QTableWidget" name="speicherAnzeige">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>40</y>
+      <width>256</width>
+      <height>371</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>926</width>
-     <height>21</height>
+     <width>1166</width>
+     <height>27</height>
     </rect>
    </property>
   </widget>

@@ -5,6 +5,7 @@
 #include "stack.h"
 #include "wregister.h"
 #include "bitoperationen.h"
+#include "laufzeitzaehler.h"
 
 #include <iostream>
 
@@ -40,6 +41,8 @@ void Alu::ausfuehrenADDWF(int befehl)
         steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenANDWF(int befehl)
@@ -57,6 +60,8 @@ void Alu::ausfuehrenANDWF(int befehl)
         steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenCLRF(int befehl)
@@ -68,6 +73,7 @@ void Alu::ausfuehrenCLRF(int befehl)
 
     steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(f,b), befehl & 0x007f);
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenCLRW(int befehl)
@@ -76,96 +82,118 @@ void Alu::ausfuehrenCLRW(int befehl)
 
     steuerwerk->getW()->schreiben(0, Speicher::NOADDRESS);
     steuerwerk->getRam()->setzeZBit();
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenCOMF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenDECF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenDECFSZ(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenINCF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenINCFSZ(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenIORWF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenMOVF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenMOVWF(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenNOP()
 {
     zaehlerstandErhoehen();
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenRLF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenRRF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenSUBWF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenSWAPF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenXORWF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenBCF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenBSF(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenBTFSC(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenBTFSS(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenADDLW(int befehl)
@@ -186,6 +214,8 @@ void Alu::ausfuehrenADDLW(int befehl)
         steuerwerk->getRam()->setzeDCBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenANDLW(int befehl)
@@ -200,6 +230,8 @@ void Alu::ausfuehrenANDLW(int befehl)
         steuerwerk->getRam()->setzeZBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenCALL(int befehl)
@@ -209,11 +241,15 @@ void Alu::ausfuehrenCALL(int befehl)
 
     int sprungadresse = sprungadresseBerechnen(befehl);
     steuerwerk->getProgrammzaehler()->schreiben(sprungadresse,Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenCLRWDT(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenGOTO(int befehl)
@@ -222,16 +258,22 @@ void Alu::ausfuehrenGOTO(int befehl)
     int sprungadresse = sprungadresseBerechnen(befehl);
 
     steuerwerk->getProgrammzaehler()->schreiben(sprungadresse,Speicher::NOADDRESS);
+
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenIORLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenMOVLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenRETFIE(int befehl)
@@ -256,12 +298,16 @@ void Alu::ausfuehrenSLEEP(int befehl)
 
 void Alu::ausfuehrenSUBLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenXORLW(int befehl)
 {
+    zaehlerstandErhoehen();
 
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 int Alu::sprungadresseBerechnen(int befehl)

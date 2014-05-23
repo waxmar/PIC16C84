@@ -36,6 +36,7 @@ int Ram::lesen(int adresse, int bank)
 {
     if (adressen[bank][adresse] == NULL)
         return 256;
+
     return *adressen[bank][adresse];
 }
 

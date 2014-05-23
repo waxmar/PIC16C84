@@ -10,6 +10,7 @@ class QLineEdit;
 class QPushButton;
 class QListWidget;
 class QLabel;
+class QTableWidget;
 
 namespace Ui {
 class MainWindow;
@@ -39,9 +40,13 @@ private:
     QLabel* programmzaehlerLabel;
     QPushButton* startButton;
     QPushButton* schrittButton;
+    QTableWidget* speicherAnsicht;
 
     void neuZeichnenProgrammzaehler();
     void neuZeichnenStack();
+    void neuZeichnenSpeicherAnsicht();
+
+    void speicherAnsichtInitialisieren();
 
 private slots:
     void oeffneDateiBrowserDialog(void);

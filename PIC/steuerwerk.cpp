@@ -7,6 +7,8 @@
 #include "alu.h"
 #include "ram.h"
 #include "stack.h"
+#include "laufzeitzaehler.h"
+#include "timersteuerung.h"
 
 #include <iostream>
 
@@ -18,6 +20,8 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     alu = new Alu(this);
     ram = new Ram();
     stack = new Stack();
+    laufzeit = new LaufzeitZaehler(this);
+    timerSteuerung = new TimerSteuerung(this);
 }
 
 Programmspeicher* Steuerwerk::getProgrammspeicher()
@@ -54,6 +58,16 @@ void Steuerwerk::schrittSteuern()
     befehlErkennen(befehl);
 
     gui->erneuernUI();
+}
+
+LaufzeitZaehler* Steuerwerk::getLaufzeitZaehler()
+{
+    return laufzeit;
+}
+
+TimerSteuerung* Steuerwerk::getTimerSteuerung()
+{
+    return timerSteuerung;
 }
 
 void Steuerwerk::befehlErkennen(int befehl)
