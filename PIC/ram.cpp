@@ -17,7 +17,6 @@ Ram::Ram()
     }
 
     //Definition der Adressen auf Bank 1 S.6
-
     adressen[1][0x01] = &bank1[0x01];
     adressen[1][0x05] = &bank1[0x05];
     adressen[1][0x06] = &bank1[0x06];
@@ -26,8 +25,11 @@ Ram::Ram()
     adressen[0][0x07] = NULL;
     adressen[1][0x07] = NULL;
 
-
     // Defaultwerte für Speicher initialisieren!
+    *adressen[1][OPTION] = 0xff;
+    *adressen[0][STATUS] = 0x18;
+    *adressen[1][TRISA] = 0xff;
+    *adressen[1][TRISB] = 0xff;
 }
 
 int Ram::lesen(int adresse, int bank)

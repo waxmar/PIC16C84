@@ -20,7 +20,21 @@ public:
     void setzeDCBit();
     void loescheDCBit();
 
+    static const int TMR0 = 0x01;
+    static const int OPTION = 0x01;
+    static const int PCL = 0x02;
     static const int STATUS = 0x03;
+    static const int FSR = 0x04;
+    static const int PORTA = 0x05;
+    static const int TRISA = 0x05;
+    static const int PORTB = 0x06;
+    static const int TRISB = 0x06;
+    static const int EEDATA = 0x08;
+    static const int EECON1 = 0x08;
+    static const int EEADR = 0x09;
+    static const int EECON2 = 0x09;
+    static const int PCLATH = 0x0A;
+    static const int INTCON = 0x0B;
 
 private:
     //Speicherbänke definieren S.6
