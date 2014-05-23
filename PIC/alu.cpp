@@ -278,22 +278,22 @@ void Alu::ausfuehrenMOVLW(int befehl)
 
 void Alu::ausfuehrenRETFIE(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenRETLW(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenRETURN(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenSLEEP(int befehl)
 {
-
+    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenSUBLW(int befehl)
