@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     bitoperationen.cpp \
     timersteuerung.cpp \
     laufzeitzaehler.cpp \
-    interruptsteuerung.cpp
+    interruptsteuerung.cpp \
+    hexconverter.cpp
 
 HEADERS  += mainwindow.h \
     codezeile.h \
@@ -43,6 +44,7 @@ HEADERS  += mainwindow.h \
     bitoperationen.h \
     timersteuerung.h \
     laufzeitzaehler.h \
-    interruptsteuerung.h
+    interruptsteuerung.h \
+    hexconverter.h
 
 FORMS    += mainwindow.ui

@@ -10,6 +10,7 @@
 #include "programmzaehler.h"
 #include "stack.h"
 #include "ram.h"
+#include "hexconverter.h"
 #include <qlabel.h>
 
 #include "parser.h"
@@ -113,8 +114,8 @@ void MainWindow::speicherAnsichtInitialisieren()
 
     speicherAnsicht->setColumnCount(3);
     speicherAnsicht->setColumnWidth(0, 60);
-    speicherAnsicht->setColumnWidth(1, 36);
-    speicherAnsicht->setColumnWidth(2, 36);
+    speicherAnsicht->setColumnWidth(1, 60);
+    speicherAnsicht->setColumnWidth(2, 60);
 
     speicherAnsicht->setHorizontalHeaderItem(0,new QTableWidgetItem("Adresse"));
     speicherAnsicht->setHorizontalHeaderItem(1,new QTableWidgetItem("Bank0"));
@@ -122,9 +123,9 @@ void MainWindow::speicherAnsichtInitialisieren()
 
     for(int adresse = 0; adresse < 0x50; adresse++)
     {
-        speicherAnsicht->setItem(adresse, 0, new QTableWidgetItem(QString::number(adresse)));
-        speicherAnsicht->setItem(adresse, 1, new QTableWidgetItem(QString::number(steuerwerk->getRam()->lesen(adresse, 0))));
-        speicherAnsicht->setItem(adresse, 2, new QTableWidgetItem(QString::number(steuerwerk->getRam()->lesen(adresse, 1))));
+        speicherAnsicht->setItem(adresse, 0, new QTableWidgetItem(HexConverter::intToHex(adresse)));
+        speicherAnsicht->setItem(adresse, 1, new QTableWidgetItem(HexConverter::intToHex(steuerwerk->getRam()->lesen(adresse, 0))));
+        speicherAnsicht->setItem(adresse, 2, new QTableWidgetItem(HexConverter::intToHex(steuerwerk->getRam()->lesen(adresse, 1))));
     }
 }
 
