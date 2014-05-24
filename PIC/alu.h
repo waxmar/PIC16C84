@@ -56,7 +56,7 @@ public:
 private:
     Steuerwerk* steuerwerk;
 
-    static const bool STOREBACKINF = true;
+    static const bool ZURUECKLADENINF = true;
 };
 
 #endif // ALU_H

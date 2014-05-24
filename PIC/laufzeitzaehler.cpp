@@ -5,7 +5,7 @@ LaufzeitZaehler::LaufzeitZaehler(Steuerwerk* steuerwerk)
 {
     this->steuerwerk = steuerwerk;
     befehlszyklen = 0;
-    frequenz = 40000.0d;
+    frequenz = 40000.0;
 }
 
 void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)

@@ -37,7 +37,7 @@ void Alu::ausfuehrenADDWF(int befehl)
     if (pruefeDigitCarry(f,w))
         steuerwerk->getRam()->setzeDCBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == STOREBACKINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -56,7 +56,7 @@ void Alu::ausfuehrenANDWF(int befehl)
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == STOREBACKINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -88,41 +88,155 @@ void Alu::ausfuehrenCLRW(int befehl)
 
 void Alu::ausfuehrenCOMF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int ergebnis = (f ^ 0x00ff);
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenDECF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int ergebnis = f-1;
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenDECFSZ(int befehl)
 {
-    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int ergebnis = f-1;
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
+    if (ergebnis == 0)
+    {
+        zaehlerstandErhoehen();
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    }
+
+    else
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenINCF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int ergebnis = f+1;
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenINCFSZ(int befehl)
 {
-    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int ergebnis = f+1;
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
+    if (ergebnis == 0)
+    {
+        zaehlerstandErhoehen();
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    }
+
+    else
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenIORWF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int konstante = (befehl & 0x00ff);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = (konstante | w);
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenMOVF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+
+    if (pruefeZero(f))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(f, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(f, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenMOVWF(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+
+    steuerwerk->getRam()->schreiben(w,(befehl & 0x007f));
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
@@ -137,12 +251,40 @@ void Alu::ausfuehrenRLF(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int c = Bitoperationen::pruefeBit(Ram::STATUS, 0);
+
+    int ergebnis = (((f << 1) & 0x00fe) + c);
+
+    if (f & 0x80)
+        steuerwerk->getRam()->setzeCBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenRRF(int befehl)
 {
     zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int c = Bitoperationen::pruefeBit(Ram::STATUS, 0);
+
+    int ergebnis = (((f >> 1) & 0x00ef) + (c << 7));
+
+    if (f & 0x01)
+        steuerwerk->getRam()->setzeCBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
@@ -151,12 +293,37 @@ void Alu::ausfuehrenSUBWF(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = f - w;
+
+    if (pruefeCarry(ergebnis))
+        steuerwerk->getRam()->setzeCBit();
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (pruefeDigitCarry(f,w))
+        steuerwerk->getRam()->setzeDCBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenSWAPF(int befehl)
 {
     zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int f_oben = ((f & 0xf0) >> 4);
+    int f_unten = ((f & 0x0f) << 4);
+    int ergebnis = f_unten + f_oben;
+
+    steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
@@ -165,12 +332,29 @@ void Alu::ausfuehrenXORWF(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
+    int ergebnis = (f ^ w);
+
+    if (pruefeZero(ergebnis))
+        steuerwerk->getRam()->setzeZBit();
+
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+        steuerwerk->getRam()->schreiben(ergebnis, befehl & 0x007f);
+    else
+        steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
 void Alu::ausfuehrenBCF(int befehl)
 {
     zaehlerstandErhoehen();
+
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int b = ((befehl & 0x0380) >> 7);
+
+    steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(f,b), befehl & 0x007f);
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
@@ -179,6 +363,11 @@ void Alu::ausfuehrenBSF(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int b = ((befehl & 0x0380) >> 7);
+
+    steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(f,b), befehl & 0x007f);
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
@@ -186,15 +375,34 @@ void Alu::ausfuehrenBTFSC(int befehl)
 {
     zaehlerstandErhoehen();
 
-    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int b = ((befehl & 0x0380) >> 7);
+
+    if (b == 0)
+    {
+        zaehlerstandErhoehen();
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    }
+
+    else
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
 void Alu::ausfuehrenBTFSS(int befehl)
 {
     zaehlerstandErhoehen();
 
-    steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
-}
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
+    int b = ((befehl & 0x0380) >> 7);
+
+    if (b == 1)
+    {
+        zaehlerstandErhoehen();
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
+    }
+
+    else
+        steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);}
 
 void Alu::ausfuehrenADDLW(int befehl)
 {
