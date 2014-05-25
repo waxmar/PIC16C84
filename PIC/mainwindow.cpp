@@ -12,6 +12,7 @@
 #include "ram.h"
 #include "hexconverter.h"
 #include <qlabel.h>
+#include <QDesktopServices>
 
 #include "parser.h"
 
@@ -36,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     startButton = ui->go;
     schrittButton = ui->schritt;
     speicherAnsicht = ui->speicherAnzeige;
+    hilfeButton=ui->hilfe;
 
     speicherAnsichtInitialisieren();
 
@@ -43,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(suchenButton, SIGNAL(clicked()), SLOT(oeffneDateiBrowserDialog()));
     connect(ladenButton, SIGNAL(clicked()), SLOT(ladeLstDatei()));
     connect(schrittButton, SIGNAL(clicked()), SLOT(schrittAusfuehren()));
+    connect(hilfeButton, SIGNAL(clicked()), SLOT(hilfeOeffnen()));
 }
 
 MainWindow::~MainWindow()
@@ -134,4 +137,12 @@ void MainWindow::erneuernUI()
     neuZeichnenProgrammzaehler();
     neuZeichnenStack();
     neuZeichnenSpeicherAnsicht();
+}
+
+void MainWindow::hilfeOeffnen()
+{
+    QString path = QDir::currentPath();
+
+    QDesktopServices::openUrl(QUrl(path + "/help.pdf"));
+
 }

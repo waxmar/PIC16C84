@@ -41,6 +41,7 @@ private:
     QPushButton* startButton;
     QPushButton* schrittButton;
     QTableWidget* speicherAnsicht;
+    QPushButton* hilfeButton;
 
     void neuZeichnenProgrammzaehler();
     void neuZeichnenStack();
@@ -52,6 +53,7 @@ private slots:
     void oeffneDateiBrowserDialog(void);
     void ladeLstDatei(void);
     void schrittAusfuehren(void);
+    void hilfeOeffnen(void);
 };
 
 #endif // MAINWINDOW_H

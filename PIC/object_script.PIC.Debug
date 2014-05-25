@@ -9,5 +9,12 @@ INPUT(
 ./debug\ram.o
 ./debug\programmspeicher.o
 ./debug\programmzaehler.o
+./debug\wregister.o
+./debug\stack.o
+./debug\bitoperationen.o
+./debug\timersteuerung.o
+./debug\laufzeitzaehler.o
+./debug\interruptsteuerung.o
+./debug\hexconverter.o
 ./debug\moc_mainwindow.o
 );

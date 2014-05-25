@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.2
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -40,6 +40,7 @@ public:
     QPushButton *schritt;
     QListWidget *stack;
     QTableWidget *speicherAnzeige;
+    QPushButton *hilfe;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -48,7 +49,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1166, 540);
+        MainWindow->resize(1166, 593);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         dateiname = new QLineEdit(centralWidget);
@@ -78,10 +79,13 @@ public:
         speicherAnzeige = new QTableWidget(centralWidget);
         speicherAnzeige->setObjectName(QStringLiteral("speicherAnzeige"));
         speicherAnzeige->setGeometry(QRect(880, 40, 256, 371));
+        hilfe = new QPushButton(centralWidget);
+        hilfe->setObjectName(QStringLiteral("hilfe"));
+        hilfe->setGeometry(QRect(930, 10, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1166, 27));
+        menuBar->setGeometry(QRect(0, 0, 1166, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -103,6 +107,7 @@ public:
         programmzaehler->setText(QApplication::translate("MainWindow", "PC", 0));
         go->setText(QApplication::translate("MainWindow", "GO", 0));
         schritt->setText(QApplication::translate("MainWindow", "Schritt ausf\303\274hren", 0));
+        hilfe->setText(QApplication::translate("MainWindow", "HILFE", 0));
     } // retranslateUi
 
 };

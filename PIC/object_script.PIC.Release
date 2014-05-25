@@ -9,5 +9,12 @@ INPUT(
 ./release\ram.o
 ./release\programmspeicher.o
 ./release\programmzaehler.o
+./release\wregister.o
+./release\stack.o
+./release\bitoperationen.o
+./release\timersteuerung.o
+./release\laufzeitzaehler.o
+./release\interruptsteuerung.o
+./release\hexconverter.o
 ./release\moc_mainwindow.o
 );
