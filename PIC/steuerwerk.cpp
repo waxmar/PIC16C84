@@ -9,6 +9,7 @@
 #include "stack.h"
 #include "laufzeitzaehler.h"
 #include "timersteuerung.h"
+#include "wregister.h"
 
 #include <iostream>
 
@@ -20,6 +21,7 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     alu = new Alu(this);
     ram = new Ram();
     stack = new Stack();
+    w = new Wregister();
     laufzeit = new LaufzeitZaehler(this);
     timerSteuerung = new TimerSteuerung(this);
 }

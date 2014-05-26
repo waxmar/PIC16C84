@@ -13,6 +13,7 @@
 #include "hexconverter.h"
 #include <qlabel.h>
 #include <QDesktopServices>
+#include <QUrl>
 
 #include "parser.h"
 
@@ -101,7 +102,7 @@ void MainWindow::neuZeichnenStack()
 //Aktualisierung des Programmzählers
 void MainWindow::neuZeichnenProgrammzaehler()
 {
-    programmzaehlerLabel->setText(QString::number(steuerwerk->getProgrammzaehler()->lesen(-1)));
+    programmzaehlerLabel->setText(HexConverter::intToHex(steuerwerk->getProgrammzaehler()->lesen(-1)));
 }
 
 //Aktualisierung der Ansicht für den Speicherinhalt
