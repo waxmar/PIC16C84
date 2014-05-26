@@ -98,7 +98,7 @@ void MainWindow::neuZeichnenStack()
 
     for(stackElement = stackInhalt->begin(); stackElement != stackInhalt->end(); stackElement++)
     {
-        QListWidgetItem* stackWidgetItem = new QListWidgetItem(QString::number(*stackElement));
+        QListWidgetItem* stackWidgetItem = new QListWidgetItem(HexConverter::intToHex(*stackElement));
         stackWidget->addItem(stackWidgetItem);
     }
 }

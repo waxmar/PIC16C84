@@ -515,6 +515,8 @@ void Alu::ausfuehrenRETLW(int befehl)
     steuerwerk->getW()->schreiben(konstante,Speicher::NOADDRESS);
 
     //oberste Adresse vom Stack holen und zurückgeben, dann pop
+    int ruecksprungadresse = steuerwerk->getStack()->lesen(Speicher::NOADDRESS);
+    steuerwerk->getProgrammzaehler()->schreiben(ruecksprungadresse, Speicher::NOADDRESS);
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
