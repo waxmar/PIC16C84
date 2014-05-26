@@ -38,12 +38,14 @@ private:
     QListWidget* befehlslisteWidget;
     QListWidget* stackWidget;
     QLabel* programmzaehlerLabel;
+    QLabel* wregisterLabel;
     QPushButton* startButton;
     QPushButton* schrittButton;
     QTableWidget* speicherAnsicht;
     QPushButton* hilfeButton;
 
     void neuZeichnenProgrammzaehler();
+    void neuZeichnenW();
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
 

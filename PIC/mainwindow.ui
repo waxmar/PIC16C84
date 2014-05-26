@@ -132,6 +132,19 @@
      <string>HILFE</string>
     </property>
    </widget>
+   <widget class="QLabel" name="w_reg">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>100</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>w_reg</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

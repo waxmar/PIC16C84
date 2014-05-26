@@ -8,6 +8,7 @@
 #include <qlistwidget.h>
 #include "programmspeicher.h"
 #include "programmzaehler.h"
+#include "wregister.h"
 #include "stack.h"
 #include "ram.h"
 #include "hexconverter.h"
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     befehlslisteWidget = ui->befehlsliste;
     stackWidget = ui->stack;
     programmzaehlerLabel = ui->programmzaehler;
+    wregisterLabel = ui->w_reg;
     startButton = ui->go;
     schrittButton = ui->schritt;
     speicherAnsicht = ui->speicherAnzeige;
@@ -77,6 +79,7 @@ void MainWindow::ladeLstDatei()
     steuerwerk->getProgrammzaehler()->initialisieren(startAdresse);
 
     neuZeichnenProgrammzaehler();
+    neuZeichnenW();
 }
 
 void MainWindow::schrittAusfuehren()
@@ -103,6 +106,12 @@ void MainWindow::neuZeichnenStack()
 void MainWindow::neuZeichnenProgrammzaehler()
 {
     programmzaehlerLabel->setText(HexConverter::intToHex(steuerwerk->getProgrammzaehler()->lesen(-1)));
+}
+
+//Aktualisierung des W-Registers
+void MainWindow::neuZeichnenW()
+{
+    wregisterLabel ->setText(HexConverter::intToHex(steuerwerk->getW()->lesen(-1)));
 }
 
 //Aktualisierung der Ansicht für den Speicherinhalt
@@ -143,6 +152,7 @@ void MainWindow::erneuernUI()
     neuZeichnenProgrammzaehler();
     neuZeichnenStack();
     neuZeichnenSpeicherAnsicht();
+    neuZeichnenW();
 }
 
 //Öffnen der Help-PDF

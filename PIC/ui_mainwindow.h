@@ -41,6 +41,7 @@ public:
     QListWidget *stack;
     QTableWidget *speicherAnzeige;
     QPushButton *hilfe;
+    QLabel *w_reg;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -82,6 +83,9 @@ public:
         hilfe = new QPushButton(centralWidget);
         hilfe->setObjectName(QStringLiteral("hilfe"));
         hilfe->setGeometry(QRect(930, 10, 75, 23));
+        w_reg = new QLabel(centralWidget);
+        w_reg->setObjectName(QStringLiteral("w_reg"));
+        w_reg->setGeometry(QRect(40, 100, 46, 13));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -108,6 +112,7 @@ public:
         go->setText(QApplication::translate("MainWindow", "GO", 0));
         schritt->setText(QApplication::translate("MainWindow", "Schritt ausf\303\274hren", 0));
         hilfe->setText(QApplication::translate("MainWindow", "HILFE", 0));
+        w_reg->setText(QApplication::translate("MainWindow", "w_reg", 0));
     } // retranslateUi
 
 };
