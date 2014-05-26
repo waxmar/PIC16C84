@@ -38,6 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
     stackWidget = ui->stack;
     programmzaehlerLabel = ui->programmzaehler;
     wregisterLabel = ui->w_reg;
+    zLabel = ui->z;
+    cLabel = ui->c;
+    dcLabel = ui->dc;
+    statusLabel = ui->status;
     startButton = ui->go;
     schrittButton = ui->schritt;
     speicherAnsicht = ui->speicherAnzeige;
@@ -81,6 +85,10 @@ void MainWindow::ladeLstDatei()
 
     neuZeichnenProgrammzaehler();
     neuZeichnenW();
+    neuZeichnenZ();
+    neuZeichnenC();
+    neuZeichnenDC();
+    neuZeichnenStatus();
 }
 
 void MainWindow::schrittAusfuehren()
@@ -113,6 +121,33 @@ void MainWindow::neuZeichnenProgrammzaehler()
 void MainWindow::neuZeichnenW()
 {
     wregisterLabel ->setText(HexConverter::intToHex(steuerwerk->getW()->lesen(-1)));
+}
+
+//Aktualisierung des Zero-Bits
+void MainWindow::neuZeichnenZ()
+{
+    QString z = QString::number((Ram::STATUS & 4) >> 2);
+    zLabel ->setText(z);
+}
+
+//Aktualisierung des Carry-Bits
+void MainWindow::neuZeichnenC()
+{
+    QString c = QString::number((Ram::STATUS & 1) >> 0);
+    cLabel ->setText(c);
+}
+
+//Aktualisierung des DigitCarry-Bits
+void MainWindow::neuZeichnenDC()
+{
+    QString dc = QString::number((Ram::STATUS & 2) >> 1);
+    dcLabel ->setText(dc);
+}
+
+//Aktualisierung des Status-Registers
+void MainWindow::neuZeichnenStatus()
+{
+    statusLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::STATUS)));
 }
 
 //Aktualisierung der Ansicht für den Speicherinhalt
@@ -155,6 +190,10 @@ void MainWindow::erneuernUI()
     neuZeichnenSpeicherAnsicht();
     fokusAufAktuelleProgrammzeile();
     neuZeichnenW();
+    neuZeichnenZ();
+    neuZeichnenC();
+    neuZeichnenDC();
+    neuZeichnenStatus();
 }
 
 //Öffnen der Help-PDF

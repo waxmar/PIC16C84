@@ -562,6 +562,7 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtoolbar.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		steuerwerk.h \
+		codezeile.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qdir.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
@@ -569,6 +570,7 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		programmspeicher.h \
 		speicher.h \
 		programmzaehler.h \
+		wregister.h \
 		stack.h \
 		ram.h \
 		hexconverter.h \

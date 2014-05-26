@@ -39,6 +39,10 @@ private:
     QListWidget* stackWidget;
     QLabel* programmzaehlerLabel;
     QLabel* wregisterLabel;
+    QLabel* zLabel;
+    QLabel* cLabel;
+    QLabel* dcLabel;
+    QLabel* statusLabel;
     QPushButton* startButton;
     QPushButton* schrittButton;
     QTableWidget* speicherAnsicht;
@@ -46,6 +50,10 @@ private:
 
     void neuZeichnenProgrammzaehler();
     void neuZeichnenW();
+    void neuZeichnenZ();
+    void neuZeichnenC();
+    void neuZeichnenDC();
+    void neuZeichnenStatus();
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
 
