@@ -44,9 +44,9 @@ void Parser::parsen(QString dateipfad, Steuerwerk* steuerwerk, QListWidget* befe
             bool ok;
 
             befehl = QString::fromStdString(zeile.substr(5,4)).toInt(&ok,16); // 16 gibt die Basis der gelesenen Dateien an, der String wird in Dezimal zur weiteren verarbeitung gespeichert
-            textZeile = QString::fromStdString(zeile.substr(21, 4)).toInt(&ok,16);
+            textZeile = QString::fromStdString(zeile.substr(21, 4)).toInt(&ok,10);
 
-            programmspeicher->schreiben(befehl, textZeile);
+            programmspeicher->schreiben(befehl, textZeile-1);
         }
 
     }

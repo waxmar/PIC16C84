@@ -21,6 +21,12 @@ void Programmspeicher::schreiben(int befehl, int textZeile)
     rom.append(*zeile);
 }
 
+Codezeile* Programmspeicher::getCodezeileAt(int adresse)
+{
+    QList<Codezeile>::iterator codezeile = rom.begin() + adresse;
+    return &(*codezeile);
+}
+
 //Ermittlung der ersten Adresse im Speicher
 QList<Codezeile>::iterator Programmspeicher::getErsteAdresse()
 {

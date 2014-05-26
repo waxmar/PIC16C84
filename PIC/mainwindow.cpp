@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "steuerwerk.h"
 
+#include "codezeile.h"
 #include "qpushbutton.h"
 #include "qlineedit.h"
 #include "qfiledialog.h"
@@ -143,6 +144,7 @@ void MainWindow::erneuernUI()
     neuZeichnenProgrammzaehler();
     neuZeichnenStack();
     neuZeichnenSpeicherAnsicht();
+    fokusAufAktuelleProgrammzeile();
 }
 
 //Öffnen der Help-PDF
@@ -152,4 +154,15 @@ void MainWindow::hilfeOeffnen()
 
     QDesktopServices::openUrl(QUrl(path + "/help.pdf"));
 
+}
+
+void MainWindow::fokusAufAktuelleProgrammzeile()
+{
+    for(int i = 0; i < befehlslisteWidget->count(); i++)
+        befehlslisteWidget->item(i)->setBackground(Qt::white);
+
+    int adresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
+    int textzeile = steuerwerk->getProgrammspeicher()->getCodezeileAt(adresse)->getTextzeile();
+
+    befehlslisteWidget->item(textzeile)->setBackground(Qt::green);
 }

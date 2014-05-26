@@ -47,6 +47,8 @@ private:
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
 
+    void fokusAufAktuelleProgrammzeile();
+
     void speicherAnsichtInitialisieren();
 
 private slots:

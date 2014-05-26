@@ -14,6 +14,7 @@ public:
     int lesen(int adresse);
     void schreiben(int befehl, int textZeile);
     QList<Codezeile>::iterator getErsteAdresse();
+    Codezeile* getCodezeileAt(int adresse);
 private:
     QList<Codezeile> rom;
 };
