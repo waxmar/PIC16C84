@@ -5,11 +5,13 @@ Programmzaehler::Programmzaehler()
 {
 }
 
+//Auslesen des aktuellen Programmzählers
 int Programmzaehler::lesen(int adresse)
 {    
     return pc - startAdresse;
 }
 
+//Erhöhen des Programmzählers um einen bestimmten Wert
 void Programmzaehler::schreiben(int wert, int adresse)
 {
     pc = startAdresse + wert;
@@ -17,6 +19,7 @@ void Programmzaehler::schreiben(int wert, int adresse)
     return;
 }
 
+//Initialisierung der Startadresse sowie des Programmzählers
 void Programmzaehler::initialisieren(QList<Codezeile>::iterator initAdresse)
 {
     startAdresse = initAdresse;

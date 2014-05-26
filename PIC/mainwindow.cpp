@@ -83,6 +83,7 @@ void MainWindow::schrittAusfuehren()
     steuerwerk->schrittSteuern();
 }
 
+//Aktualisierung des Stack-Widgets
 void MainWindow::neuZeichnenStack()
 {
     stackWidget->clear();
@@ -97,11 +98,13 @@ void MainWindow::neuZeichnenStack()
     }
 }
 
+//Aktualisierung des Programmzählers
 void MainWindow::neuZeichnenProgrammzaehler()
 {
     programmzaehlerLabel->setText(QString::number(steuerwerk->getProgrammzaehler()->lesen(-1)));
 }
 
+//Aktualisierung der Ansicht für den Speicherinhalt
 void MainWindow::neuZeichnenSpeicherAnsicht()
 {
     for(int adresse = 0; adresse < 0x50; adresse++)
@@ -111,6 +114,7 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
     }
 }
 
+//Initialisierung der Ansicht für den Speicherinhalt
 void MainWindow::speicherAnsichtInitialisieren()
 {
     speicherAnsicht->setRowCount(0x50);
@@ -132,6 +136,7 @@ void MainWindow::speicherAnsichtInitialisieren()
     }
 }
 
+//Aktualiserung der gesamten Benutzeroberfläche
 void MainWindow::erneuernUI()
 {
     neuZeichnenProgrammzaehler();
@@ -139,6 +144,7 @@ void MainWindow::erneuernUI()
     neuZeichnenSpeicherAnsicht();
 }
 
+//Öffnen der Help-PDF
 void MainWindow::hilfeOeffnen()
 {
     QString path = QDir::currentPath();

@@ -16,6 +16,7 @@ public:
     void schreiben(int wert, int adresse);
 
     void initialisieren(QList<Codezeile>::iterator initAdresse);
+
 private:
     QList<Codezeile>::iterator startAdresse;
     QList<Codezeile>::iterator pc;

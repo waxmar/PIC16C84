@@ -12,6 +12,7 @@ Parser::Parser()
 {
 }
 
+//Auslesen des Befehlscodes (Zeichen 5-8) sowie der Textzeile (Zeichen 21-24)
 void Parser::parsen(QString dateipfad, Steuerwerk* steuerwerk, QListWidget* befehlsliste)
 {
     if(steuerwerk == NULL)

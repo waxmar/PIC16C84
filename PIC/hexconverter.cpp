@@ -4,6 +4,7 @@ HexConverter::HexConverter()
 {
 }
 
+//konvertiert einen int-Wert zu einer Hexadezimalzahl
 QString HexConverter::intToHex(int wert)
 {
     int mask = 0x00f0; // entspricht 0b11110000

@@ -50,6 +50,7 @@ Wregister* Steuerwerk::getW()
     return w;
 }
 
+//Steuerung eines einzelnen Schrittes (Zählerstand erhöhen, Befehl lesen - parsen - ausführen, Oberfläche aktualiseren)
 void Steuerwerk::schrittSteuern()
 {
     int zaehlerstand = programmzaehler->lesen(-1);

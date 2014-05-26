@@ -8,6 +8,7 @@ LaufzeitZaehler::LaufzeitZaehler(Steuerwerk* steuerwerk)
     frequenz = 40000.0;
 }
 
+//Anzahl der Befehlszyklen wird um 1 bzw. 2 erhöht
 void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
 {
     if(anzahlZyklen != 0 || anzahlZyklen != 1)

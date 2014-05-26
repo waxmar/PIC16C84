@@ -32,6 +32,7 @@ Ram::Ram()
     *adressen[1][TRISB] = 0xff;
 }
 
+//Auslesen des RAM-Inhaltes von einer bestimmten Bank
 int Ram::lesen(int adresse, int bank)
 {
     if (adressen[bank][adresse] == NULL)
@@ -40,6 +41,7 @@ int Ram::lesen(int adresse, int bank)
     return *adressen[bank][adresse];
 }
 
+//Auslesen des RAM-Inhaltes
 int Ram::lesen(int adresse)
 {
     int aktiveBank = getActiveBank();
@@ -49,6 +51,7 @@ int Ram::lesen(int adresse)
 
 }
 
+//Schreiben eines Wertes an eine bestimmte Adresse auf einer bestimmmten Bank
 void Ram::schreiben(int wert, int adresse, int bank)
 {
     if (adressen[bank][adresse] == NULL)
@@ -56,6 +59,7 @@ void Ram::schreiben(int wert, int adresse, int bank)
     *adressen[bank][adresse] = (wert & 0xff);
 }
 
+//Schreiben eines Wertes an eine bestimmte Adresse
 void Ram::schreiben(int wert, int adresse)
 {
     int aktiveBank = getActiveBank();
@@ -64,37 +68,43 @@ void Ram::schreiben(int wert, int adresse)
     *adressen[aktiveBank][adresse] = (wert & 0xff);
 }
 
-
+//Ermmitteln der zur Zeit aktiven Bank
 int Ram::getActiveBank()
 {
     return (bank0[0x03]&0x20>>5);
 }
 
+//setzt das Zero-Bit auf 1
 void Ram::setzeZBit()
 {
      schreiben(Bitoperationen::setzeBit(lesen(STATUS), 2), STATUS, 0);
 }
 
+//setzt das Zero-Bit auf 0
 void Ram::loescheZBit()
 {
      schreiben(Bitoperationen::loescheBit(lesen(STATUS), 2), STATUS, 0);
 }
 
+//setzt das Carry-Bit auf 1
 void Ram::setzeCBit()
 {
     schreiben(Bitoperationen::setzeBit(lesen(STATUS),0), STATUS, 0);
 }
 
+//setzt das Carry-Bit auf 0
 void Ram::loescheCBit()
 {
     schreiben(Bitoperationen::loescheBit(lesen(STATUS),0), STATUS, 0);
 }
 
+//setzt das DigitCarry-Bit auf 1
 void Ram::setzeDCBit()
 {
     schreiben(Bitoperationen::setzeBit(lesen(STATUS),1), STATUS, 0);
 }
 
+//setzt das DigitCarry-Bit auf 0
 void Ram::loescheDCBit()
 {
     schreiben(Bitoperationen::loescheBit(lesen(STATUS) ,1), STATUS, 0);

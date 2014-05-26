@@ -14,6 +14,8 @@ Alu::Alu(Steuerwerk* steuerwerk)
     this->steuerwerk = steuerwerk;
 }
 
+//Implementierung der PIC-Befehle//
+
 void Alu::zaehlerstandErhoehen()
 {
     int zaehlerstand = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
