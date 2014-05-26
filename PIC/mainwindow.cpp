@@ -126,22 +126,28 @@ void MainWindow::neuZeichnenW()
 //Aktualisierung des Zero-Bits
 void MainWindow::neuZeichnenZ()
 {
-    QString z = QString::number((Ram::STATUS & 4) >> 2);
-    zLabel ->setText(z);
+    int z = steuerwerk->getRam()->lesen(Ram::STATUS);
+    z = ((z&4)>>2);
+    QString zero = (HexConverter::intToHex(z));
+    zLabel ->setText(zero);
 }
 
 //Aktualisierung des Carry-Bits
 void MainWindow::neuZeichnenC()
 {
-    QString c = QString::number((Ram::STATUS & 1) >> 0);
-    cLabel ->setText(c);
+    int c = steuerwerk->getRam()->lesen(Ram::STATUS);
+    c = ((c&1)>>0);
+    QString carry = (HexConverter::intToHex(c));
+    cLabel ->setText(carry);
 }
 
-//Aktualisierung des DigitCarry-Bits
+//Aktualisierung des Carry-Bits
 void MainWindow::neuZeichnenDC()
 {
-    QString dc = QString::number((Ram::STATUS & 2) >> 1);
-    dcLabel ->setText(dc);
+    int dc = steuerwerk->getRam()->lesen(Ram::STATUS);
+    dc = ((dc&2)>>1);
+    QString digitcarry = (HexConverter::intToHex(dc));
+    dcLabel ->setText(digitcarry);
 }
 
 //Aktualisierung des Status-Registers
