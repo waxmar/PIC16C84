@@ -3,6 +3,7 @@
 #include "steuerwerk.h"
 
 #include "codezeile.h"
+#include "bitoperationen.h"
 #include "qpushbutton.h"
 #include "qlineedit.h"
 #include "qfiledialog.h"
@@ -42,18 +43,26 @@ MainWindow::MainWindow(QWidget *parent) :
     cLabel = ui->c;
     dcLabel = ui->dc;
     statusLabel = ui->status;
+    fsrLabel = ui->fsr;
+    pclathLabel = ui->pclath;
     startButton = ui->go;
     schrittButton = ui->schritt;
+    resetButton = ui->reset;
     speicherAnsicht = ui->speicherAnzeige;
+    registerA = ui->registerA;
+    registerB = ui->registerB;
     hilfeButton=ui->hilfe;
 
     speicherAnsichtInitialisieren();
+    registerAnsichtInitialisieren();
 
     // Buttonfunktionen definieren
     connect(suchenButton, SIGNAL(clicked()), SLOT(oeffneDateiBrowserDialog()));
     connect(ladenButton, SIGNAL(clicked()), SLOT(ladeLstDatei()));
     connect(schrittButton, SIGNAL(clicked()), SLOT(schrittAusfuehren()));
     connect(hilfeButton, SIGNAL(clicked()), SLOT(hilfeOeffnen()));
+    connect(resetButton, SIGNAL(clicked()), SLOT(resetUI()));
+    connect(startButton, SIGNAL(clicked()), SLOT(programmAusfuehren()));
 }
 
 MainWindow::~MainWindow()
@@ -89,6 +98,17 @@ void MainWindow::ladeLstDatei()
     neuZeichnenC();
     neuZeichnenDC();
     neuZeichnenStatus();
+    neuZeichnenSpeicherAnsicht();
+}
+
+void MainWindow::programmAusfuehren()
+{
+    //alle Schritte nacheinander ausführen
+}
+
+void MainWindow::resetUI()
+{
+    //alle Werte zurücksetzen
 }
 
 void MainWindow::schrittAusfuehren()
@@ -127,33 +147,39 @@ void MainWindow::neuZeichnenW()
 void MainWindow::neuZeichnenZ()
 {
     int z = steuerwerk->getRam()->lesen(Ram::STATUS);
-    z = ((z&4)>>2);
-    QString zero = (HexConverter::intToHex(z));
-    zLabel ->setText(zero);
+    zLabel ->setText(QString::number((z&4)>>2));
 }
 
 //Aktualisierung des Carry-Bits
 void MainWindow::neuZeichnenC()
 {
     int c = steuerwerk->getRam()->lesen(Ram::STATUS);
-    c = ((c&1)>>0);
-    QString carry = (HexConverter::intToHex(c));
-    cLabel ->setText(carry);
+    cLabel ->setText(QString::number((c&1)>>0));
 }
 
 //Aktualisierung des Carry-Bits
 void MainWindow::neuZeichnenDC()
 {
     int dc = steuerwerk->getRam()->lesen(Ram::STATUS);
-    dc = ((dc&2)>>1);
-    QString digitcarry = (HexConverter::intToHex(dc));
-    dcLabel ->setText(digitcarry);
+    dcLabel ->setText(QString::number((dc&2)>>1));
 }
 
 //Aktualisierung des Status-Registers
 void MainWindow::neuZeichnenStatus()
 {
     statusLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::STATUS)));
+}
+
+//Aktualisierung des FSR-Registers
+void MainWindow::neuZeichnenFSR()
+{
+    fsrLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::FSR)));
+}
+
+//Aktualisierung des PCLATH-Registers
+void MainWindow::neuZeichnenPCLATH()
+{
+    pclathLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::PCLATH)));
 }
 
 //Aktualisierung der Ansicht für den Speicherinhalt
@@ -163,6 +189,18 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
     {
         speicherAnsicht->item(adresse, 1)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 0)));
         speicherAnsicht->item(adresse, 2)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 1)));
+    }
+}
+
+//Aktualisierung der Ansicht für den Registerinhalt
+void MainWindow::neuZeichnenRegisterAnsicht()
+{
+    for (int i = 0; i < 8; i++)
+    {
+    registerA->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x05,7-i))));
+    registerA->setItem(0,i,new QTableWidgetItem("i"));
+    registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
+    registerB->setItem(0,i,new QTableWidgetItem("i"));
     }
 }
 
@@ -188,6 +226,19 @@ void MainWindow::speicherAnsichtInitialisieren()
     }
 }
 
+//Initialisierung der Ansicht für den Registerinhalt
+void MainWindow::registerAnsichtInitialisieren()
+{
+    for (int i = 0; i < 8; i++)
+    {
+    registerA->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x05,7-i))));
+    registerA->setItem(0,i,new QTableWidgetItem("i"));
+    registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
+    registerB->setItem(0,i,new QTableWidgetItem("i"));
+    }
+
+}
+
 //Aktualiserung der gesamten Benutzeroberfläche
 void MainWindow::erneuernUI()
 {
@@ -200,6 +251,9 @@ void MainWindow::erneuernUI()
     neuZeichnenC();
     neuZeichnenDC();
     neuZeichnenStatus();
+    neuZeichnenFSR();
+    neuZeichnenPCLATH();
+    neuZeichnenRegisterAnsicht();
 }
 
 //Öffnen der Help-PDF

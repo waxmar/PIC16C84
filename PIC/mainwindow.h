@@ -43,9 +43,14 @@ private:
     QLabel* cLabel;
     QLabel* dcLabel;
     QLabel* statusLabel;
+    QLabel* fsrLabel;
+    QLabel* pclathLabel;
     QPushButton* startButton;
     QPushButton* schrittButton;
+    QPushButton* resetButton;
     QTableWidget* speicherAnsicht;
+    QTableWidget* registerA;
+    QTableWidget* registerB;
     QPushButton* hilfeButton;
 
     void neuZeichnenProgrammzaehler();
@@ -54,18 +59,24 @@ private:
     void neuZeichnenC();
     void neuZeichnenDC();
     void neuZeichnenStatus();
+    void neuZeichnenFSR();
+    void neuZeichnenPCLATH();
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
+    void neuZeichnenRegisterAnsicht();
 
     void fokusAufAktuelleProgrammzeile();
 
     void speicherAnsichtInitialisieren();
+    void registerAnsichtInitialisieren();
 
 private slots:
     void oeffneDateiBrowserDialog(void);
     void ladeLstDatei(void);
     void schrittAusfuehren(void);
     void hilfeOeffnen(void);
+    void resetUI(void);
+    void programmAusfuehren(void);
 };
 
 #endif // MAINWINDOW_H
