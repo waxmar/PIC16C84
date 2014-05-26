@@ -508,6 +508,14 @@ void Alu::ausfuehrenRETFIE(int befehl)
 
 void Alu::ausfuehrenRETLW(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    int konstante = (befehl & 0xff);
+
+    steuerwerk->getW()->schreiben(konstante,Speicher::NOADDRESS);
+
+    //oberste Adresse vom Stack holen und zurückgeben, dann pop
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
