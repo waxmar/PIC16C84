@@ -232,9 +232,16 @@ void MainWindow::registerAnsichtInitialisieren()
     for (int i = 0; i < 8; i++)
     {
     registerA->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x05,7-i))));
-    registerA->setItem(0,i,new QTableWidgetItem("i"));
+    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x05,1),7-i) == 1)
+                registerA->setItem(0,i,new QTableWidgetItem("i"));
+    else
+                registerA->setItem(0,i,new QTableWidgetItem("o"));
+
     registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
-    registerB->setItem(0,i,new QTableWidgetItem("i"));
+    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x06,1),7-i) == 1)
+                registerB->setItem(0,i,new QTableWidgetItem("i"));
+    else
+                registerB->setItem(0,i,new QTableWidgetItem("o"));
     }
 
 }

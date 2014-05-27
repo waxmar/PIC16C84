@@ -48,12 +48,12 @@ public:
     QSplitter *splitter;
     QPushButton *suchen;
     QPushButton *laden;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *go;
     QPushButton *schritt;
     QPushButton *reset;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QLabel *Programmzaehler;
     QLabel *programmzaehler;
@@ -158,7 +158,9 @@ public:
         QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
         registerB->setVerticalHeaderItem(1, __qtablewidgetitem19);
         registerB->setObjectName(QStringLiteral("registerB"));
+        registerB->setEnabled(true);
         registerB->setGeometry(QRect(390, 40, 191, 81));
+        registerB->setCornerButtonEnabled(false);
         registerB->horizontalHeader()->setDefaultSectionSize(20);
         registerB->horizontalHeader()->setMinimumSectionSize(20);
         registerB->verticalHeader()->setDefaultSectionSize(25);
@@ -182,113 +184,113 @@ public:
         laden = new QPushButton(splitter);
         laden->setObjectName(QStringLiteral("laden"));
         splitter->addWidget(laden);
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 330, 77, 83));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(30, 330, 77, 83));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        go = new QPushButton(widget);
+        go = new QPushButton(layoutWidget);
         go->setObjectName(QStringLiteral("go"));
 
         verticalLayout->addWidget(go);
 
-        schritt = new QPushButton(widget);
+        schritt = new QPushButton(layoutWidget);
         schritt->setObjectName(QStringLiteral("schritt"));
 
         verticalLayout->addWidget(schritt);
 
-        reset = new QPushButton(widget);
+        reset = new QPushButton(layoutWidget);
         reset->setObjectName(QStringLiteral("reset"));
 
         verticalLayout->addWidget(reset);
 
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 151, 101, 148));
-        gridLayout = new QGridLayout(widget1);
+        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 151, 101, 148));
+        gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        Programmzaehler = new QLabel(widget1);
+        Programmzaehler = new QLabel(layoutWidget1);
         Programmzaehler->setObjectName(QStringLiteral("Programmzaehler"));
 
         gridLayout->addWidget(Programmzaehler, 0, 0, 1, 1);
 
-        programmzaehler = new QLabel(widget1);
+        programmzaehler = new QLabel(layoutWidget1);
         programmzaehler->setObjectName(QStringLiteral("programmzaehler"));
 
         gridLayout->addWidget(programmzaehler, 0, 1, 1, 1);
 
-        WRegister = new QLabel(widget1);
+        WRegister = new QLabel(layoutWidget1);
         WRegister->setObjectName(QStringLiteral("WRegister"));
 
         gridLayout->addWidget(WRegister, 1, 0, 1, 1);
 
-        w_reg = new QLabel(widget1);
+        w_reg = new QLabel(layoutWidget1);
         w_reg->setObjectName(QStringLiteral("w_reg"));
 
         gridLayout->addWidget(w_reg, 1, 1, 1, 1);
 
-        ZeroBit = new QLabel(widget1);
+        ZeroBit = new QLabel(layoutWidget1);
         ZeroBit->setObjectName(QStringLiteral("ZeroBit"));
 
         gridLayout->addWidget(ZeroBit, 2, 0, 1, 1);
 
-        z = new QLabel(widget1);
+        z = new QLabel(layoutWidget1);
         z->setObjectName(QStringLiteral("z"));
 
         gridLayout->addWidget(z, 2, 1, 1, 1);
 
-        CarryBit = new QLabel(widget1);
+        CarryBit = new QLabel(layoutWidget1);
         CarryBit->setObjectName(QStringLiteral("CarryBit"));
 
         gridLayout->addWidget(CarryBit, 3, 0, 1, 1);
 
-        c = new QLabel(widget1);
+        c = new QLabel(layoutWidget1);
         c->setObjectName(QStringLiteral("c"));
 
         gridLayout->addWidget(c, 3, 1, 1, 1);
 
-        DCBit = new QLabel(widget1);
+        DCBit = new QLabel(layoutWidget1);
         DCBit->setObjectName(QStringLiteral("DCBit"));
 
         gridLayout->addWidget(DCBit, 4, 0, 1, 1);
 
-        dc = new QLabel(widget1);
+        dc = new QLabel(layoutWidget1);
         dc->setObjectName(QStringLiteral("dc"));
 
         gridLayout->addWidget(dc, 4, 1, 1, 1);
 
-        FSR = new QLabel(widget1);
+        FSR = new QLabel(layoutWidget1);
         FSR->setObjectName(QStringLiteral("FSR"));
 
         gridLayout->addWidget(FSR, 5, 0, 1, 1);
 
-        fsr = new QLabel(widget1);
+        fsr = new QLabel(layoutWidget1);
         fsr->setObjectName(QStringLiteral("fsr"));
 
         gridLayout->addWidget(fsr, 5, 1, 1, 1);
 
-        PCLATH = new QLabel(widget1);
+        PCLATH = new QLabel(layoutWidget1);
         PCLATH->setObjectName(QStringLiteral("PCLATH"));
 
         gridLayout->addWidget(PCLATH, 6, 0, 1, 1);
 
-        pclath = new QLabel(widget1);
+        pclath = new QLabel(layoutWidget1);
         pclath->setObjectName(QStringLiteral("pclath"));
 
         gridLayout->addWidget(pclath, 6, 1, 1, 1);
 
-        STATUS = new QLabel(widget1);
+        STATUS = new QLabel(layoutWidget1);
         STATUS->setObjectName(QStringLiteral("STATUS"));
 
         gridLayout->addWidget(STATUS, 7, 0, 1, 1);
 
-        status = new QLabel(widget1);
+        status = new QLabel(layoutWidget1);
         status->setObjectName(QStringLiteral("status"));
 
         gridLayout->addWidget(status, 7, 1, 1, 1);
