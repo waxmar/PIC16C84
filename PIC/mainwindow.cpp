@@ -184,8 +184,8 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
 {
     for(int adresse = 0; adresse < 0x50; adresse++)
     {
-        speicherAnsicht->item(adresse, 1)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 0)));
-        speicherAnsicht->item(adresse, 2)->setText(QString::number(steuerwerk->getRam()->lesen(adresse, 1)));
+        speicherAnsicht->item(adresse, 1)->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(adresse, 0)));
+        speicherAnsicht->item(adresse, 2)->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(adresse, 1)));
     }
 }
 

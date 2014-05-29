@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "bitoperationen.h"
 
+#include <iostream>
+
 Ram::Ram()
 {
 
@@ -65,7 +67,16 @@ void Ram::schreiben(int wert, int adresse)
     int aktiveBank = getActiveBank();
     if (adressen[aktiveBank][adresse] == NULL)
         return;
+
     *adressen[aktiveBank][adresse] = (wert & 0xff);
+
+    if(adresse == Ram::FSR)
+    {
+        if(Bitoperationen::pruefeBit(wert, 7))
+            adressen[1][0] = adressen[0][0] = adressen[1][wert & 0x7F];
+        else
+            adressen[1][0] = adressen[0][0] = adressen[0][wert & 0x7F];
+    }
 }
 
 //Ermmitteln der zur Zeit aktiven Bank
