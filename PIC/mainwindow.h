@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include <QList>
+#include <QModelIndex>
 
 class Steuerwerk;
 class QLineEdit;
@@ -65,6 +66,7 @@ private:
     void neuZeichnenSpeicherAnsicht();
     void neuZeichnenRegisterAnsicht();
 
+    void fokusAlteProgrammzeileEntfernen();
     void fokusAufAktuelleProgrammzeile();
 
     void speicherAnsichtInitialisieren();
@@ -77,6 +79,7 @@ private slots:
     void hilfeOeffnen(void);
     void resetUI(void);
     void programmAusfuehren(void);
+    void setzeBreakpoint(QModelIndex);
 };
 
 #endif // MAINWINDOW_H

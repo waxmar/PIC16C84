@@ -9,6 +9,7 @@ public:
     int getBefehl();
     bool isBreakpoint();
     int getTextzeile();
+    void toggleBreakpoint();
 
 private:
     int befehl;

@@ -25,3 +25,8 @@ int Codezeile::getTextzeile()
 {
     return textZeile;
 }
+
+void Codezeile::toggleBreakpoint()
+{
+    breakpoint = !breakpoint;
+}

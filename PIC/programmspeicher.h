@@ -15,6 +15,7 @@ public:
     void schreiben(int befehl, int textZeile);
     QList<Codezeile>::iterator getErsteAdresse();
     Codezeile* getCodezeileAt(int adresse);
+    Codezeile* findCodezeileByLinenumber(int linenumber);
 private:
     QList<Codezeile> rom;
 };

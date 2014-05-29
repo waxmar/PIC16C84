@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(hilfeButton, SIGNAL(clicked()), SLOT(hilfeOeffnen()));
     connect(resetButton, SIGNAL(clicked()), SLOT(resetUI()));
     connect(startButton, SIGNAL(clicked()), SLOT(programmAusfuehren()));
+    connect(befehlslisteWidget, SIGNAL(doubleClicked(QModelIndex)), SLOT(setzeBreakpoint(QModelIndex)));
 }
 
 MainWindow::~MainWindow()
@@ -92,13 +93,7 @@ void MainWindow::ladeLstDatei()
     QList<Codezeile>::iterator startAdresse = steuerwerk->getProgrammspeicher()->getErsteAdresse();
     steuerwerk->getProgrammzaehler()->initialisieren(startAdresse);
 
-    neuZeichnenProgrammzaehler();
-    neuZeichnenW();
-    neuZeichnenZ();
-    neuZeichnenC();
-    neuZeichnenDC();
-    neuZeichnenStatus();
-    neuZeichnenSpeicherAnsicht();
+    erneuernUI();
 }
 
 void MainWindow::programmAusfuehren()
@@ -113,6 +108,8 @@ void MainWindow::resetUI()
 
 void MainWindow::schrittAusfuehren()
 {
+    fokusAlteProgrammzeileEntfernen();
+
     steuerwerk->schrittSteuern();
 }
 
@@ -272,13 +269,41 @@ void MainWindow::hilfeOeffnen()
 
 }
 
+void MainWindow::fokusAlteProgrammzeileEntfernen()
+{
+    int adresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
+    int textzeile = steuerwerk->getProgrammspeicher()->getCodezeileAt(adresse)->getTextzeile();
+
+    befehlslisteWidget->item(textzeile)->setBackground(Qt::white);
+}
+
 void MainWindow::fokusAufAktuelleProgrammzeile()
 {
-    for(int i = 0; i < befehlslisteWidget->count(); i++)
-        befehlslisteWidget->item(i)->setBackground(Qt::white);
-
     int adresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
     int textzeile = steuerwerk->getProgrammspeicher()->getCodezeileAt(adresse)->getTextzeile();
 
     befehlslisteWidget->item(textzeile)->setBackground(Qt::green);
+    befehlslisteWidget->setCurrentRow(textzeile);
+    befehlslisteWidget->clearSelection();
+}
+
+void MainWindow::setzeBreakpoint(QModelIndex index)
+{
+    int textzeile = index.row();
+
+    cout << "Line clicked " << textzeile << endl;
+
+    Codezeile* breakpointZeile = steuerwerk->getProgrammspeicher()->findCodezeileByLinenumber(textzeile);
+
+    if(breakpointZeile == NULL)
+        return;
+
+    breakpointZeile->toggleBreakpoint();
+
+    if(breakpointZeile->isBreakpoint())
+        befehlslisteWidget->item(textzeile)->setBackground(Qt::yellow);
+    else
+        befehlslisteWidget->item(textzeile)->setBackground(Qt::white);
+
+    befehlslisteWidget->clearSelection();
 }

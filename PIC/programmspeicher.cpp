@@ -27,6 +27,21 @@ Codezeile* Programmspeicher::getCodezeileAt(int adresse)
     return &(*codezeile);
 }
 
+// returns NULL, if there is no element with this linenumber
+Codezeile* Programmspeicher::findCodezeileByLinenumber(int linenumber)
+{
+    QList<Codezeile>::iterator codezeile = rom.begin();
+    while(codezeile != rom.end())
+    {
+        if((&(*codezeile))->getTextzeile() == linenumber)
+            return &(*codezeile);
+
+        codezeile++;
+    }
+
+    return NULL;
+}
+
 //Ermittlung der ersten Adresse im Speicher
 QList<Codezeile>::iterator Programmspeicher::getErsteAdresse()
 {
