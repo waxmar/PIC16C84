@@ -247,6 +247,8 @@ release/moc_mainwindow.cpp: E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QMainW
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QList \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QModelIndex \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		mainwindow.h
 	E:\Zeug\Qt\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) mainwindow.h -o release\moc_mainwindow.cpp
 
@@ -383,6 +385,8 @@ release/main.o: main.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QList \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QModelIndex \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QApplication \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qapplication.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcoreapplication.h \
@@ -505,6 +509,8 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qicon.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QList \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QModelIndex \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		ui_mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QVariant \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QAction \
@@ -519,12 +525,16 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qinputmethod.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QButtonGroup \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QGridLayout \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qgridlayout.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qlayout.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qlayoutitem.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qboxlayout.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QHeaderView \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qheaderview.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qabstractitemview.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qabstractscrollarea.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qframe.h \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qitemselectionmodel.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qabstractitemdelegate.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qstyleoption.h \
@@ -553,6 +563,8 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QSplitter \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qsplitter.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QStatusBar \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qstatusbar.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QTableWidget \
@@ -560,9 +572,11 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtableview.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QToolBar \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtoolbar.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QVBoxLayout \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QWidget \
 		steuerwerk.h \
 		codezeile.h \
+		bitoperationen.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qdir.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
@@ -834,6 +848,8 @@ release/steuerwerk.o: steuerwerk.cpp steuerwerk.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qtouchdevice.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qicon.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QModelIndex \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		codezeile.h \
 		programmspeicher.h \
 		speicher.h \
