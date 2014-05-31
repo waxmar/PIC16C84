@@ -64,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(resetButton, SIGNAL(clicked()), SLOT(resetUI()));
     connect(startButton, SIGNAL(clicked()), SLOT(programmAusfuehren()));
     connect(befehlslisteWidget, SIGNAL(doubleClicked(QModelIndex)), SLOT(setzeBreakpoint(QModelIndex)));
+    connect(registerB, SIGNAL(cellClicked(int,int)), this, SLOT(registerAnsichtAendern(int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -199,6 +200,15 @@ void MainWindow::neuZeichnenRegisterAnsicht()
     registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
     registerB->setItem(0,i,new QTableWidgetItem("i"));
     }
+}
+
+//Ansicht des Registers B ändern
+void MainWindow::registerAnsichtAendern(int reihe, int spalte)
+{
+    Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte);
+    std::cout << "PortB = " << steuerwerk->getRam()->lesen(0x06) << std::endl;
+    registerAnsichtInitialisieren();
+    neuZeichnenRegisterAnsicht();
 }
 
 //Initialisierung der Ansicht fÃ¼r den Speicherinhalt
