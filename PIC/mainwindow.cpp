@@ -190,28 +190,20 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
     }
 }
 
-//Aktualisierung der Ansicht f√ºr den Registerinhalt
-void MainWindow::neuZeichnenRegisterAnsicht()
-{
-    for (int i = 0; i < 8; i++)
-    {
-    registerA->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x05,7-i))));
-    registerA->setItem(0,i,new QTableWidgetItem("i"));
-    registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
-    registerB->setItem(0,i,new QTableWidgetItem("i"));
-    }
-}
-
 //Ansicht des Registers B ‰ndern
 void MainWindow::registerAnsichtAendern(int reihe, int spalte)
 {
-    Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte);
-    std::cout << "PortB = " << steuerwerk->getRam()->lesen(0x06) << std::endl;
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB,0),7-spalte) == 1)
+            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(0x06,7-spalte),0x06,0);
+    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB,0),7-spalte) == 0)
+        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(0x06,7-spalte),0x06,0);
+    else
+            return;
+
     registerAnsichtInitialisieren();
-    neuZeichnenRegisterAnsicht();
 }
 
-//Initialisierung der Ansicht f√ºr den Speicherinhalt
+//Initialisierung der Ansicht f¸r den Speicherinhalt
 void MainWindow::speicherAnsichtInitialisieren()
 {
     speicherAnsicht->setRowCount(0x50);
@@ -233,18 +225,26 @@ void MainWindow::speicherAnsichtInitialisieren()
     }
 }
 
-//Initialisierung der Ansicht f√ºr den Registerinhalt
+//Initialisierung der Ansicht f¸r den Registerinhalt
 void MainWindow::registerAnsichtInitialisieren()
 {
     for (int i = 0; i < 8; i++)
     {
-    registerA->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x05,7-i))));
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x05,0),7-i) == 1)
+                registerA->setItem(1,i,new QTableWidgetItem("1"));
+    else
+                registerA->setItem(1,i,new QTableWidgetItem("0"));
+
     if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x05,1),7-i) == 1)
                 registerA->setItem(0,i,new QTableWidgetItem("i"));
     else
                 registerA->setItem(0,i,new QTableWidgetItem("o"));
 
-    registerB->setItem(1,i,new QTableWidgetItem(QString::number(Bitoperationen::zeigeBit(0x06,7-i))));
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x06,0),7-i) == 1)
+                registerB->setItem(1,i,new QTableWidgetItem("1"));
+    else
+                registerB->setItem(1,i,new QTableWidgetItem("0"));
+
     if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x06,1),7-i) == 1)
                 registerB->setItem(0,i,new QTableWidgetItem("i"));
     else
@@ -253,7 +253,7 @@ void MainWindow::registerAnsichtInitialisieren()
 
 }
 
-//Aktualiserung der gesamten Benutzeroberfl√§che
+//Aktualiserung der gesamten Benutzeroberfl‰che
 void MainWindow::erneuernUI()
 {
     neuZeichnenProgrammzaehler();
@@ -267,7 +267,6 @@ void MainWindow::erneuernUI()
     neuZeichnenStatus();
     neuZeichnenFSR();
     neuZeichnenPCLATH();
-    neuZeichnenRegisterAnsicht();
 }
 
 //√ñffnen der Help-PDF

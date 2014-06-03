@@ -27,12 +27,3 @@ int Bitoperationen::zeigeBit(int wert, int bit)
 {
     return ((wert >> bit) & 0x01);
 }
-
-//toggelt ein Bit
-int Bitoperationen::toggleBit(int wert)
-{
-    if (wert == 1)
-        return 0;
-    else
-        return 1;
-}

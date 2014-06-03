@@ -64,7 +64,6 @@ private:
     void neuZeichnenPCLATH();
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
-    void neuZeichnenRegisterAnsicht();
 
     void fokusAlteProgrammzeileEntfernen();
     void fokusAufAktuelleProgrammzeile();
