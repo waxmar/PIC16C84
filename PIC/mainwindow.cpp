@@ -64,7 +64,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(resetButton, SIGNAL(clicked()), SLOT(resetUI()));
     connect(startButton, SIGNAL(clicked()), SLOT(programmAusfuehren()));
     connect(befehlslisteWidget, SIGNAL(doubleClicked(QModelIndex)), SLOT(setzeBreakpoint(QModelIndex)));
-    connect(registerB, SIGNAL(cellClicked(int,int)), this, SLOT(registerAnsichtAendern(int,int)));
+    connect(registerA, SIGNAL(cellClicked(int,int)), this, SLOT(registerAaktualisieren(int,int)));
+    connect(registerB, SIGNAL(cellClicked(int,int)), this, SLOT(registerBaktualisieren(int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -190,13 +191,28 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
     }
 }
 
-//Ansicht des Registers B ändern
-void MainWindow::registerAnsichtAendern(int reihe, int spalte)
+//Ansicht des Registers A ändern
+void MainWindow::registerAaktualisieren(int reihe, int spalte)
 {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB,0),7-spalte) == 1)
-            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(0x06,7-spalte),0x06,0);
-    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB,0),7-spalte) == 0)
-        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(0x06,7-spalte),0x06,0);
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 1)
+            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(Ram::PORTA,7-spalte),0x05,0);
+    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 0)
+        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(Ram::PORTA,7-spalte),0x05,0);
+    else
+            return;
+
+    registerAnsichtInitialisieren();
+}
+
+//Ansicht des Registers B ändern
+void MainWindow::registerBaktualisieren(int reihe, int spalte)
+{
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 1)
+            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(Ram::PORTB,7-spalte),0x06,0);
+
+    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 0)
+        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(Ram::PORTB,7-spalte),0x06,0);
+
     else
             return;
 

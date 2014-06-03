@@ -79,7 +79,8 @@ private slots:
     void resetUI(void);
     void programmAusfuehren(void);
     void setzeBreakpoint(QModelIndex);
-    void registerAnsichtAendern(int reihe, int spalte);
+    void registerAaktualisieren(int reihe, int spalte);
+    void registerBaktualisieren(int reihe, int spalte);
 };
 
 #endif // MAINWINDOW_H
