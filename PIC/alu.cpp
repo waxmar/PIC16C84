@@ -32,12 +32,18 @@ void Alu::ausfuehrenADDWF(int befehl)
 
     if (pruefeCarry(ergebnis))
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (pruefeDigitCarry(f,w))
         steuerwerk->getRam()->setzeDCBit();
+    else
+        steuerwerk->getRam()->loescheDCBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -57,6 +63,8 @@ void Alu::ausfuehrenANDWF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis,(befehl & 0x007f));
@@ -97,6 +105,8 @@ void Alu::ausfuehrenCOMF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -116,6 +126,8 @@ void Alu::ausfuehrenDECF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -135,6 +147,8 @@ void Alu::ausfuehrenDECFSZ(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -161,6 +175,8 @@ void Alu::ausfuehrenINCF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -180,6 +196,8 @@ void Alu::ausfuehrenINCFSZ(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -207,6 +225,8 @@ void Alu::ausfuehrenIORWF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis,(befehl & 0x007f));
@@ -225,6 +245,8 @@ void Alu::ausfuehrenMOVF(int befehl)
 
     if (pruefeZero(f))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(f, (befehl & 0x007f));
@@ -264,6 +286,8 @@ void Alu::ausfuehrenRLF(int befehl)
 
     if (f & 0x80)
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -285,6 +309,8 @@ void Alu::ausfuehrenRRF(int befehl)
 
     if (f & 0x01)
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -305,12 +331,18 @@ void Alu::ausfuehrenSUBWF(int befehl)
 
     if (pruefeCarry(ergebnis))
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (pruefeDigitCarry(f,w))
         steuerwerk->getRam()->setzeDCBit();
+    else
+        steuerwerk->getRam()->loescheDCBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -344,6 +376,8 @@ void Alu::ausfuehrenXORWF(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
@@ -418,12 +452,18 @@ void Alu::ausfuehrenADDLW(int befehl)
 
     if (pruefeCarry(ergebnis))
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (pruefeDigitCarry(konstante,w))
         steuerwerk->getRam()->setzeDCBit();
+    else
+        steuerwerk->getRam()->loescheDCBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 
@@ -440,6 +480,8 @@ void Alu::ausfuehrenANDLW(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 
@@ -484,6 +526,8 @@ void Alu::ausfuehrenIORLW(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 
@@ -546,12 +590,18 @@ void Alu::ausfuehrenSUBLW(int befehl)
 
     if (pruefeCarry(ergebnis))
         steuerwerk->getRam()->setzeCBit();
+    else
+        steuerwerk->getRam()->loescheCBit();
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     if (pruefeDigitCarry(konstante,w))
         steuerwerk->getRam()->setzeDCBit();
+    else
+        steuerwerk->getRam()->loescheDCBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 
@@ -568,6 +618,8 @@ void Alu::ausfuehrenXORLW(int befehl)
 
     if (pruefeZero(ergebnis))
         steuerwerk->getRam()->setzeZBit();
+    else
+        steuerwerk->getRam()->loescheZBit();
 
     steuerwerk->getW()->schreiben(ergebnis,Speicher::NOADDRESS);
 
