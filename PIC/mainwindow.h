@@ -13,6 +13,8 @@ class QListWidget;
 class QLabel;
 class QTableWidget;
 
+class RunThread;
+
 namespace Ui {
 class MainWindow;
 }
@@ -27,11 +29,18 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void fokusAlteProgrammzeileEntfernen();
+
     void erneuernUI();
+
+    bool threadIsAlive;
 
 private:
     Ui::MainWindow *ui;
     Steuerwerk* steuerwerk;
+
+    RunThread* runThread;
+    QThread* wrapperThread;
 
     QLineEdit* dateinameLineEdit;
     QPushButton* suchenButton;
@@ -65,7 +74,6 @@ private:
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
 
-    void fokusAlteProgrammzeileEntfernen();
     void fokusAufAktuelleProgrammzeile();
 
     void speicherAnsichtInitialisieren();
@@ -81,6 +89,7 @@ private slots:
     void setzeBreakpoint(QModelIndex);
     void registerAaktualisieren(int reihe, int spalte);
     void registerBaktualisieren(int reihe, int spalte);
+    void goButtonGeklickt(void);
 };
 
 #endif // MAINWINDOW_H

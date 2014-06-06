@@ -19,6 +19,7 @@
 #include <QUrl>
 
 #include "parser.h"
+#include "runthread.h"
 
 #include <iostream>
 
@@ -30,6 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Ãœbergabe des Objektes steuerwerk, Verbindung zwischen Steuerwerk und MainWindow
     steuerwerk = new Steuerwerk(this);
+
+    runThread = new RunThread(steuerwerk);
+    wrapperThread = new QThread();
+
+    threadIsAlive = false;
 
     // GUI Elemente
     dateinameLineEdit = ui->dateiname;
@@ -66,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(befehlslisteWidget, SIGNAL(doubleClicked(QModelIndex)), SLOT(setzeBreakpoint(QModelIndex)));
     connect(registerA, SIGNAL(cellClicked(int,int)), this, SLOT(registerAaktualisieren(int,int)));
     connect(registerB, SIGNAL(cellClicked(int,int)), this, SLOT(registerBaktualisieren(int,int)));
+    connect(startButton, SIGNAL(clicked()), SLOT(goButtonGeklickt()));
 }
 
 MainWindow::~MainWindow()
@@ -110,8 +117,6 @@ void MainWindow::resetUI()
 
 void MainWindow::schrittAusfuehren()
 {
-    fokusAlteProgrammzeileEntfernen();
-
     steuerwerk->schrittSteuern();
 }
 
@@ -217,6 +222,46 @@ void MainWindow::registerBaktualisieren(int reihe, int spalte)
             return;
 
     registerAnsichtInitialisieren();
+}
+
+void MainWindow::goButtonGeklickt()
+{
+    cout << "signal recieved" << endl;
+
+    if(threadIsAlive == false)
+    {
+        threadIsAlive = true;
+
+        cout << "moving to wrapperthread" << endl;
+
+        if(runThread == NULL)
+            cout << "runThread = NULL" << endl;
+        else
+            cout << "runThread initialized" << endl;
+
+        if(wrapperThread == NULL)
+            cout << "wrapperThread = NULL" << endl;
+        else
+            cout << "wrapperThread initialized" << endl;
+
+        cout << "arschloch" << endl;
+
+        runThread->moveToThread(wrapperThread);
+
+        cout << "starting thread" << endl;
+
+        wrapperThread->start();
+
+        cout << "thread started" << endl;
+
+        QMetaObject::invokeMethod(runThread, "run", Qt::QueuedConnection);
+
+        cout << "run invoked" << endl;
+
+        return;
+    }
+
+    threadIsAlive = false;
 }
 
 //Initialisierung der Ansicht für den Speicherinhalt

@@ -55,6 +55,8 @@ Wregister* Steuerwerk::getW()
 //Steuerung eines einzelnen Schrittes (Zählerstand erhöhen, Befehl lesen - parsen - ausführen, Oberfläche aktualiseren)
 void Steuerwerk::schrittSteuern()
 {
+    gui->fokusAlteProgrammzeileEntfernen();
+
     int zaehlerstand = programmzaehler->lesen(-1);
     int befehl = programmspeicher->lesen(zaehlerstand);
 
