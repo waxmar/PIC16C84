@@ -415,9 +415,10 @@ void Alu::ausfuehrenBTFSC(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
     int b = ((befehl & 0x0380) >> 7);
 
-    if (b == 0)
+    if (Bitoperationen::zeigeBit(f,b) == 0)
     {
         zaehlerstandErhoehen();
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
@@ -431,9 +432,10 @@ void Alu::ausfuehrenBTFSS(int befehl)
 {
     zaehlerstandErhoehen();
 
+    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
     int b = ((befehl & 0x0380) >> 7);
 
-    if (b == 1)
+    if (Bitoperationen::zeigeBit(f,b) == 1)
     {
         zaehlerstandErhoehen();
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);

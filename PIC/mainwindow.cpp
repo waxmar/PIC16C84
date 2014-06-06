@@ -199,10 +199,10 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
 //Ansicht des Registers A ändern
 void MainWindow::registerAaktualisieren(int reihe, int spalte)
 {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 1)
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 1 && reihe == 1)
             steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(steuerwerk->getRam()->lesen(0x05,0),7-spalte),0x05,0);
 
-   else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 0)
+   else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 0 && reihe == 1)
         steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x05,0),7-spalte),0x05,0);
 
     else
@@ -215,10 +215,10 @@ void MainWindow::registerAaktualisieren(int reihe, int spalte)
 //Ansicht des Registers B ändern
 void MainWindow::registerBaktualisieren(int reihe, int spalte)
 {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 1)
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 1 && reihe == 1)
             steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte),0x06,0);
 
-    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 0)
+    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 0 && reihe == 1)
         steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte),0x06,0);
 
     else
