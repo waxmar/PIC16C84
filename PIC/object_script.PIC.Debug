@@ -16,5 +16,7 @@ INPUT(
 ./debug\laufzeitzaehler.o
 ./debug\interruptsteuerung.o
 ./debug\hexconverter.o
+./debug\runthread.o
 ./debug\moc_mainwindow.o
+./debug\moc_runthread.o
 );

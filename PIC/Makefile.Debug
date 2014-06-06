@@ -59,7 +59,9 @@ SOURCES       = main.cpp \
 		timersteuerung.cpp \
 		laufzeitzaehler.cpp \
 		interruptsteuerung.cpp \
-		hexconverter.cpp debug\moc_mainwindow.cpp
+		hexconverter.cpp \
+		runthread.cpp debug\moc_mainwindow.cpp \
+		debug\moc_runthread.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
 		debug/codezeile.o \
@@ -77,7 +79,9 @@ OBJECTS       = debug/main.o \
 		debug/laufzeitzaehler.o \
 		debug/interruptsteuerung.o \
 		debug/hexconverter.o \
-		debug/moc_mainwindow.o
+		debug/runthread.o \
+		debug/moc_mainwindow.o \
+		debug/moc_runthread.o
 
 DIST          = 
 QMAKE_TARGET  = PIC
@@ -118,7 +122,7 @@ dist:
 	$(ZIP) PIC.zip $(SOURCES) $(DIST) PIC.pro E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\spec_pre.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\qdevice.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\device_config.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\common\shell-win32.conf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\qconfig.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axbase.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axbase_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axcontainer.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axcontainer_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axserver.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_axserver_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_bluetooth.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_bluetooth_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_bootstrap_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_clucene_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_concurrent.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_concurrent_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_core.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_core_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_declarative.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_declarative_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_designer.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_designer_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_designercomponents_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_gui.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_gui_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_help.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_help_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_multimedia.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_multimedia_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_multimediawidgets.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_network.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_network_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_nfc.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_nfc_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_opengl.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_opengl_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_openglextensions.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_openglextensions_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_platformsupport_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_positioning.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_positioning_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_printsupport.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_printsupport_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qml.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qml_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qmltest.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qmltest_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_quick.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_quick_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_quickparticles_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_script.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_script_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_scripttools.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_scripttools_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_sensors.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_sensors_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_serialport.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_serialport_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_sql.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_sql_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_svg.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_svg_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_testlib.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_testlib_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_uitools.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_uitools_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_webkit.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_webkit_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_webkitwidgets.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_widgets.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_widgets_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_winextras.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_winextras_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_xml.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_xml_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_xmlpatterns.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\qt_functions.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\qt_config.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\win32-g++\qmake.conf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\spec_post.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\exclusive_builds.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\default_pre.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\win32\default_pre.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\resolve_config.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\exclusive_builds_post.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\default_post.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\build_pass.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\win32\rtti.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\warn_on.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\qt.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\resources.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\moc.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\win32\opengl.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\uic.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\win32\windows.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\testcase_targets.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\exceptions.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\yacc.prf E:\Zeug\Qt\5.2.1\mingw48_32\mkspecs\features\lex.prf PIC.pro E:/Zeug/Qt/5.2.1/mingw48_32/lib/Qt5Widgetsd.prl E:/Zeug/Qt/5.2.1/mingw48_32/lib/Qt5Guid.prl E:/Zeug/Qt/5.2.1/mingw48_32/lib/Qt5Cored.prl  RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\codezeile.o debug\parser.o debug\steuerwerk.o debug\alu.o debug\speicher.o debug\ram.o debug\programmspeicher.o debug\programmzaehler.o debug\wregister.o debug\stack.o debug\bitoperationen.o debug\timersteuerung.o debug\laufzeitzaehler.o debug\interruptsteuerung.o debug\hexconverter.o debug\moc_mainwindow.o
+	-$(DEL_FILE) debug\main.o debug\mainwindow.o debug\codezeile.o debug\parser.o debug\steuerwerk.o debug\alu.o debug\speicher.o debug\ram.o debug\programmspeicher.o debug\programmzaehler.o debug\wregister.o debug\stack.o debug\bitoperationen.o debug\timersteuerung.o debug\laufzeitzaehler.o debug\interruptsteuerung.o debug\hexconverter.o debug\runthread.o debug\moc_mainwindow.o debug\moc_runthread.o
 
 distclean: clean
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -132,9 +136,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_runthread.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_runthread.cpp
 debug/moc_mainwindow.cpp: E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QMainWindow \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qmainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qwidget.h \
@@ -251,6 +255,68 @@ debug/moc_mainwindow.cpp: E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QMainWin
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h \
 		mainwindow.h
 	E:\Zeug\Qt\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) mainwindow.h -o debug\moc_mainwindow.cpp
+
+debug/moc_runthread.cpp: E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QThread \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qthread.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobject.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobjectdefs.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qnamespace.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobal.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qconfig.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfeatures.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsystemdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qprocessordetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcompilerdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobalstatic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qgenericatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_msvc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_integrity.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qoldbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_vxworks.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_power.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_alpha.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv7.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv6.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv5.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bfin.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_ia64.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_mips.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_s390.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sh4a.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sparc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_x86.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_cxx11.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_gcc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_unix.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmutex.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlogging.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qflags.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypeinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstring.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qchar.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qbytearray.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qarraydata.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstringbuilder.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlist.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qalgorithms.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcoreevent.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qscopedpointer.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmetatype.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qvarlengtharray.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcontainerfwd.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qisenum.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobject_impl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QObject \
+		runthread.h
+	E:\Zeug\Qt\5.2.1\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) runthread.h -o debug\moc_runthread.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -593,7 +659,11 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qdesktopservices.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstandardpaths.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QUrl \
-		parser.h
+		parser.h \
+		runthread.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QThread \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qthread.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QObject
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/codezeile.o: codezeile.cpp codezeile.h
@@ -1290,8 +1360,133 @@ debug/hexconverter.o: hexconverter.cpp hexconverter.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\hexconverter.o hexconverter.cpp
 
+debug/runthread.o: runthread.cpp runthread.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QThread \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qthread.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobject.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobjectdefs.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qnamespace.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobal.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qconfig.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfeatures.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsystemdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qprocessordetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcompilerdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobalstatic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qgenericatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_msvc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_integrity.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qoldbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_vxworks.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_power.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_alpha.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv7.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv6.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv5.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bfin.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_ia64.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_mips.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_s390.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sh4a.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sparc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_x86.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_cxx11.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_gcc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_unix.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmutex.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlogging.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qflags.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypeinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstring.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qchar.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qbytearray.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qarraydata.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstringbuilder.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlist.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qalgorithms.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcoreevent.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qscopedpointer.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmetatype.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qvarlengtharray.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcontainerfwd.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qisenum.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qobject_impl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QObject \
+		steuerwerk.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QList \
+		mainwindow.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QMainWindow \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qmainwindow.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qwidget.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qwindowdefs.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qwindowdefs_win.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmargins.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrect.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsize.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qpoint.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qpaintdevice.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qpalette.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qcolor.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qrgb.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstringlist.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qdatastream.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiodevice.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qpair.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qregexp.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qstringmatcher.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qbrush.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qvector.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qmatrix.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qpolygon.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qregion.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qline.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qtransform.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qpainterpath.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qimage.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qpixmap.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsharedpointer.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qshareddata.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qhash.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qfont.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qfontmetrics.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qfontinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qsizepolicy.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qcursor.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qkeysequence.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qevent.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qvariant.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmap.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qdebug.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtextstream.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlocale.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qset.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcontiguouscache.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qurl.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qurlquery.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfile.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfiledevice.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qvector2d.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qtouchdevice.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qtabwidget.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtGui/qicon.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QModelIndex \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qabstractitemmodel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\runthread.o runthread.cpp
+
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_mainwindow.o debug\moc_mainwindow.cpp
+
+debug/moc_runthread.o: debug/moc_runthread.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_runthread.o debug\moc_runthread.cpp
 
 ####### Install
 
