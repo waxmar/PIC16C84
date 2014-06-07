@@ -10,6 +10,7 @@ public:
     Stack();
     int lesen(int adresse);
     void schreiben(int wert, int adresse);
+    void loeschen(void);
     QList<int>* getInhalt(void);
 
 private:

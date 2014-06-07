@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.2
+** Created by: Qt User Interface Compiler version 5.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -21,7 +21,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
@@ -45,9 +44,6 @@ public:
     QLabel *ra;
     QLabel *rb;
     QLabel *spezialregister;
-    QSplitter *splitter;
-    QPushButton *suchen;
-    QPushButton *laden;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *go;
@@ -71,6 +67,7 @@ public:
     QLabel *pclath;
     QLabel *STATUS;
     QLabel *status;
+    QPushButton *suchen;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -173,20 +170,10 @@ public:
         rb->setGeometry(QRect(370, 40, 21, 16));
         spezialregister = new QLabel(centralWidget);
         spezialregister->setObjectName(QStringLiteral("spezialregister"));
-        spezialregister->setGeometry(QRect(20, 120, 71, 25));
-        splitter = new QSplitter(centralWidget);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(10, 10, 75, 46));
-        splitter->setOrientation(Qt::Vertical);
-        suchen = new QPushButton(splitter);
-        suchen->setObjectName(QStringLiteral("suchen"));
-        splitter->addWidget(suchen);
-        laden = new QPushButton(splitter);
-        laden->setObjectName(QStringLiteral("laden"));
-        splitter->addWidget(laden);
+        spezialregister->setGeometry(QRect(20, 39, 71, 25));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 330, 77, 83));
+        layoutWidget->setGeometry(QRect(30, 249, 77, 83));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -209,7 +196,7 @@ public:
 
         layoutWidget1 = new QWidget(centralWidget);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 151, 101, 148));
+        layoutWidget1->setGeometry(QRect(10, 70, 101, 148));
         gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -295,6 +282,9 @@ public:
 
         gridLayout->addWidget(status, 7, 1, 1, 1);
 
+        suchen = new QPushButton(centralWidget);
+        suchen->setObjectName(QStringLiteral("suchen"));
+        suchen->setGeometry(QRect(10, 10, 111, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -360,8 +350,6 @@ public:
         ra->setText(QApplication::translate("MainWindow", "RA", 0));
         rb->setText(QApplication::translate("MainWindow", "RB", 0));
         spezialregister->setText(QApplication::translate("MainWindow", "Spezialregister", 0));
-        suchen->setText(QApplication::translate("MainWindow", "Suchen", 0));
-        laden->setText(QApplication::translate("MainWindow", "Laden", 0));
         go->setText(QApplication::translate("MainWindow", "GO", 0));
         schritt->setText(QApplication::translate("MainWindow", "Schritt", 0));
         reset->setText(QApplication::translate("MainWindow", "Reset", 0));
@@ -381,6 +369,7 @@ public:
         pclath->setText(QApplication::translate("MainWindow", "PCLATH", 0));
         STATUS->setText(QApplication::translate("MainWindow", "STATUS", 0));
         status->setText(QApplication::translate("MainWindow", "STATUS", 0));
+        suchen->setText(QApplication::translate("MainWindow", "Suchen", 0));
     } // retranslateUi
 
 };
