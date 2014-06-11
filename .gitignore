@@ -223,7 +223,7 @@ PICSimu/*.pro.user
 /build*/
 PICSimu/*.pro.user.*
 
-Makefile*
+PIC/Makefile*
 
 # Compiled Object files
 *.slo
