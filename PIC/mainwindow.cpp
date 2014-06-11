@@ -4,6 +4,7 @@
 
 #include "codezeile.h"
 #include "bitoperationen.h"
+#include "laufzeitzaehler.h"
 #include "qpushbutton.h"
 #include "qlineedit.h"
 #include "qfiledialog.h"
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     befehlslisteWidget = ui->befehlsliste;
     stackWidget = ui->stack;
     programmzaehlerLabel = ui->programmzaehler;
+    laufzeitzaehlerLabel = ui->laufzeit;
     wregisterLabel = ui->w_reg;
     zLabel = ui->z;
     cLabel = ui->c;
@@ -100,6 +102,7 @@ void MainWindow::resetUI()
     steuerwerk->getRam()->schreiben(0x00, Ram::PCLATH);
     steuerwerk->getStack()->loeschen();
     steuerwerk->getRam()->schreiben(steuerwerk->getRam()->lesen(Ram::INTCON) & 0x01, Ram::INTCON);
+    steuerwerk->getW()->schreiben(0x00, Speicher::NOADDRESS);
 
     steuerwerk->getRam()->schreiben(0x1f,  Ram::TRISA, 1);
     steuerwerk->getRam()->schreiben(0xff, Ram::TRISB, 1);
@@ -127,10 +130,16 @@ void MainWindow::neuZeichnenStack()
     }
 }
 
-//Aktualisierung des ProgrammzÃ¤hlers
+//Aktualisierung des Programmzählers
 void MainWindow::neuZeichnenProgrammzaehler()
 {
     programmzaehlerLabel->setText(HexConverter::intToHex(steuerwerk->getProgrammzaehler()->lesen(-1)));
+}
+
+//Aktualisierung des Laufzeitzählers
+void MainWindow::neuZeichnenLaufzeit()
+{
+    laufzeitzaehlerLabel->setText(QString::number(steuerwerk->getLaufzeitZaehler()->getLaufzeit()));
 }
 
 //Aktualisierung des W-Registers
@@ -297,6 +306,7 @@ void MainWindow::registerAnsichtInitialisieren()
 void MainWindow::erneuernUI()
 {
     neuZeichnenProgrammzaehler();
+    neuZeichnenLaufzeit();
     neuZeichnenStack();
     neuZeichnenSpeicherAnsicht();
     fokusAufAktuelleProgrammzeile();

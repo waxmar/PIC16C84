@@ -38,7 +38,7 @@ public:
     QListWidget *stack;
     QTableWidget *speicherAnzeige;
     QPushButton *hilfe;
-    QLabel *stack_2;
+    QLabel *stacklabel;
     QTableWidget *registerA;
     QTableWidget *registerB;
     QLabel *ra;
@@ -68,6 +68,9 @@ public:
     QLabel *STATUS;
     QLabel *status;
     QPushButton *suchen;
+    QLabel *laufzeitzaehler;
+    QLabel *laufzeit;
+    QLabel *laufzeiteinheit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -95,9 +98,9 @@ public:
         hilfe = new QPushButton(centralWidget);
         hilfe->setObjectName(QStringLiteral("hilfe"));
         hilfe->setGeometry(QRect(930, 10, 75, 23));
-        stack_2 = new QLabel(centralWidget);
-        stack_2->setObjectName(QStringLiteral("stack_2"));
-        stack_2->setGeometry(QRect(630, 40, 46, 13));
+        stacklabel = new QLabel(centralWidget);
+        stacklabel->setObjectName(QStringLiteral("stacklabel"));
+        stacklabel->setGeometry(QRect(630, 40, 46, 13));
         registerA = new QTableWidget(centralWidget);
         if (registerA->columnCount() < 8)
             registerA->setColumnCount(8);
@@ -285,6 +288,15 @@ public:
         suchen = new QPushButton(centralWidget);
         suchen->setObjectName(QStringLiteral("suchen"));
         suchen->setGeometry(QRect(10, 10, 111, 21));
+        laufzeitzaehler = new QLabel(centralWidget);
+        laufzeitzaehler->setObjectName(QStringLiteral("laufzeitzaehler"));
+        laufzeitzaehler->setGeometry(QRect(750, 40, 46, 13));
+        laufzeit = new QLabel(centralWidget);
+        laufzeit->setObjectName(QStringLiteral("laufzeit"));
+        laufzeit->setGeometry(QRect(750, 60, 46, 13));
+        laufzeiteinheit = new QLabel(centralWidget);
+        laufzeiteinheit->setObjectName(QStringLiteral("laufzeiteinheit"));
+        laufzeiteinheit->setGeometry(QRect(770, 60, 46, 13));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -306,7 +318,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         hilfe->setText(QApplication::translate("MainWindow", "HILFE", 0));
-        stack_2->setText(QApplication::translate("MainWindow", "Stack", 0));
+        stacklabel->setText(QApplication::translate("MainWindow", "Stack", 0));
         QTableWidgetItem *___qtablewidgetitem = registerA->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "7", 0));
         QTableWidgetItem *___qtablewidgetitem1 = registerA->horizontalHeaderItem(1);
@@ -370,6 +382,9 @@ public:
         STATUS->setText(QApplication::translate("MainWindow", "STATUS", 0));
         status->setText(QApplication::translate("MainWindow", "STATUS", 0));
         suchen->setText(QApplication::translate("MainWindow", "Suchen", 0));
+        laufzeitzaehler->setText(QApplication::translate("MainWindow", "Laufzeit", 0));
+        laufzeit->setText(QApplication::translate("MainWindow", "Laufzeit", 0));
+        laufzeiteinheit->setText(QApplication::translate("MainWindow", "\302\265s", 0));
     } // retranslateUi
 
 };
