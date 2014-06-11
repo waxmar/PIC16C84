@@ -266,7 +266,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>120</y>
+      <y>39</y>
       <width>71</width>
       <height>25</height>
      </rect>
@@ -275,34 +275,11 @@
      <string>Spezialregister</string>
     </property>
    </widget>
-   <widget class="QSplitter" name="splitter">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>75</width>
-      <height>46</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-    <widget class="QPushButton" name="suchen">
-     <property name="text">
-      <string>Suchen</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="laden">
-     <property name="text">
-      <string>Laden</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>330</y>
+      <y>249</y>
       <width>77</width>
       <height>83</height>
      </rect>
@@ -335,7 +312,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>151</y>
+      <y>70</y>
       <width>101</width>
       <height>148</height>
      </rect>
@@ -454,6 +431,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="suchen">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Suchen</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

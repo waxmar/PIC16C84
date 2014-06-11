@@ -44,7 +44,6 @@ private:
 
     QLineEdit* dateinameLineEdit;
     QPushButton* suchenButton;
-    QPushButton* ladenButton;
     QListWidget* befehlslisteWidget;
     QListWidget* stackWidget;
     QLabel* programmzaehlerLabel;
@@ -81,11 +80,9 @@ private:
 
 private slots:
     void oeffneDateiBrowserDialog(void);
-    void ladeLstDatei(void);
     void schrittAusfuehren(void);
     void hilfeOeffnen(void);
     void resetUI(void);
-    void programmAusfuehren(void);
     void setzeBreakpoint(QModelIndex);
     void registerAaktualisieren(int reihe, int spalte);
     void registerBaktualisieren(int reihe, int spalte);

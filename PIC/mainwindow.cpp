@@ -40,7 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // GUI Elemente
     dateinameLineEdit = ui->dateiname;
     suchenButton = ui->suchen;
-    ladenButton = ui->laden;
     befehlslisteWidget = ui->befehlsliste;
     stackWidget = ui->stack;
     programmzaehlerLabel = ui->programmzaehler;
@@ -64,11 +63,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Buttonfunktionen definieren
     connect(suchenButton, SIGNAL(clicked()), SLOT(oeffneDateiBrowserDialog()));
-    connect(ladenButton, SIGNAL(clicked()), SLOT(ladeLstDatei()));
     connect(schrittButton, SIGNAL(clicked()), SLOT(schrittAusfuehren()));
     connect(hilfeButton, SIGNAL(clicked()), SLOT(hilfeOeffnen()));
     connect(resetButton, SIGNAL(clicked()), SLOT(resetUI()));
-    connect(startButton, SIGNAL(clicked()), SLOT(programmAusfuehren()));
     connect(befehlslisteWidget, SIGNAL(doubleClicked(QModelIndex)), SLOT(setzeBreakpoint(QModelIndex)));
     connect(registerA, SIGNAL(cellClicked(int,int)), this, SLOT(registerAaktualisieren(int,int)));
     connect(registerB, SIGNAL(cellClicked(int,int)), this, SLOT(registerBaktualisieren(int,int)));
@@ -80,19 +77,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// Funktion zum Ã–ffnen des Browsers und suchen der .lst Datei
+// Browser-Dialog zum suchen und laden der LST-Datei
 void MainWindow::oeffneDateiBrowserDialog()
 {
-    QString dateiName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                     "",
-                                                     tr("Files (*.*)"));
+    QString dateiName = QFileDialog::getOpenFileName(this, tr("Open File"),"",tr("Files (*.*)"));
     dateinameLineEdit->clear();
     dateinameLineEdit->setText(dateiName);
-}
 
-// Funktion zum Laden der .lst Datei in den Parser
-void MainWindow::ladeLstDatei()
-{
     // Beginn Initialisierung
     // INIT programmspeicher
     QString speicherOrt = dateinameLineEdit->text();
@@ -105,14 +96,18 @@ void MainWindow::ladeLstDatei()
     erneuernUI();
 }
 
-void MainWindow::programmAusfuehren()
-{
-    //alle Schritte nacheinander ausfÃ¼hren
-}
-
 void MainWindow::resetUI()
 {
-    //alle Werte zurÃ¼cksetzen
+    steuerwerk->getProgrammzaehler()->schreiben(0x00,Speicher::NOADDRESS);
+    steuerwerk->getRam()->schreiben(steuerwerk->getRam()->lesen(Ram::STATUS) & 0x1f, Ram::STATUS);
+    steuerwerk->getRam()->schreiben(0x00, Ram::PCLATH);
+    steuerwerk->getStack()->loeschen();
+    steuerwerk->getRam()->schreiben(steuerwerk->getRam()->lesen(Ram::INTCON) & 0x01, Ram::INTCON);
+
+    steuerwerk->getRam()->schreiben(0x1f,  Ram::TRISA, 1);
+    steuerwerk->getRam()->schreiben(0xff, Ram::TRISB, 1);
+
+    erneuernUI();
 }
 
 void MainWindow::schrittAusfuehren()
@@ -199,29 +194,33 @@ void MainWindow::neuZeichnenSpeicherAnsicht()
 //Ansicht des Registers A ändern
 void MainWindow::registerAaktualisieren(int reihe, int spalte)
 {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 1)
-            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(Ram::PORTA,7-spalte),0x05,0);
-    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 0)
-        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(Ram::PORTA,7-spalte),0x05,0);
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 1 && reihe == 1)
+            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(steuerwerk->getRam()->lesen(0x05,0),7-spalte),0x05,0);
+
+   else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTA),7-spalte) == 0 && reihe == 1)
+        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x05,0),7-spalte),0x05,0);
+
     else
-            return;
+        return;
 
     registerAnsichtInitialisieren();
+    neuZeichnenSpeicherAnsicht();
 }
 
 //Ansicht des Registers B ändern
 void MainWindow::registerBaktualisieren(int reihe, int spalte)
 {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 1)
-            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(Ram::PORTB,7-spalte),0x06,0);
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 1 && reihe == 1)
+            steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte),0x06,0);
 
-    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 0)
-        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(Ram::PORTB,7-spalte),0x06,0);
+    else if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(Ram::PORTB),7-spalte) == 0 && reihe == 1)
+        steuerwerk->getRam()->schreiben(Bitoperationen::setzeBit(steuerwerk->getRam()->lesen(0x06,0),7-spalte),0x06,0);
 
     else
-            return;
+        return;
 
     registerAnsichtInitialisieren();
+    neuZeichnenSpeicherAnsicht();
 }
 
 void MainWindow::goButtonGeklickt()

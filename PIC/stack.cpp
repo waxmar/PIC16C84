@@ -20,6 +20,12 @@ void Stack::schreiben(int wert, int adresse)
     stack.append(wert);
 }
 
+//Löscht die Stackinhalte
+void Stack::loeschen()
+{
+    stack.clear();
+}
+
 //Gibt die Adresse des Stack zurÃ¼ck
 QList<int>* Stack::getInhalt(void)
 {

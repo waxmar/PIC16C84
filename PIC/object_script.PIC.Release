@@ -16,5 +16,7 @@ INPUT(
 ./release\laufzeitzaehler.o
 ./release\interruptsteuerung.o
 ./release\hexconverter.o
+./release\runthread.o
 ./release\moc_mainwindow.o
+./release\moc_runthread.o
 );
