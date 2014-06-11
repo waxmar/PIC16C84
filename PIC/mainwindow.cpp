@@ -32,9 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Übergabe des Objektes steuerwerk, Verbindung zwischen Steuerwerk und MainWindow
     steuerwerk = new Steuerwerk(this);
 
-    runThread = new RunThread(steuerwerk);
-    wrapperThread = new QThread();
-
     threadIsAlive = false;
 
     // GUI Elemente
@@ -224,38 +221,21 @@ void MainWindow::registerBaktualisieren(int reihe, int spalte)
 }
 
 void MainWindow::goButtonGeklickt()
-{
+{   
     cout << "signal recieved" << endl;
 
     if(threadIsAlive == false)
     {
         threadIsAlive = true;
 
-        cout << "moving to wrapperthread" << endl;
-
-        if(runThread == NULL)
-            cout << "runThread = NULL" << endl;
-        else
-            cout << "runThread initialized" << endl;
-
-        if(wrapperThread == NULL)
-            cout << "wrapperThread = NULL" << endl;
-        else
-            cout << "wrapperThread initialized" << endl;
-
-        cout << "arschloch" << endl;
+        RunThread* runThread = new RunThread(this->steuerwerk);
+        QThread* wrapperThread = new QThread();
 
         runThread->moveToThread(wrapperThread);
 
-        cout << "starting thread" << endl;
-
         wrapperThread->start();
 
-        cout << "thread started" << endl;
-
         QMetaObject::invokeMethod(runThread, "run", Qt::QueuedConnection);
-
-        cout << "run invoked" << endl;
 
         return;
     }

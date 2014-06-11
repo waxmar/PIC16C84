@@ -39,9 +39,6 @@ private:
     Ui::MainWindow *ui;
     Steuerwerk* steuerwerk;
 
-    RunThread* runThread;
-    QThread* wrapperThread;
-
     QLineEdit* dateinameLineEdit;
     QPushButton* suchenButton;
     QListWidget* befehlslisteWidget;

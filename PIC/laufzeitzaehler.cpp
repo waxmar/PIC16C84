@@ -20,3 +20,8 @@ void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
        // Timer
     }
 }
+
+double LaufzeitZaehler::getLaufzeit()
+{
+    return (double)befehlszyklen * 4.0d * (1.0d / frequenz);
+}

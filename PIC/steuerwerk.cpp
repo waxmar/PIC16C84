@@ -62,6 +62,8 @@ void Steuerwerk::schrittSteuern()
 
     befehlErkennen(befehl);
 
+    ram->schreiben(programmzaehler->lesen(Speicher::NOADDRESS), Ram::PCL, 0);
+
     gui->erneuernUI();
 }
 

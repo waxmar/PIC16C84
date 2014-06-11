@@ -8,6 +8,8 @@ class LaufzeitZaehler
 public:
     LaufzeitZaehler(Steuerwerk* steuerwerk);
 
+    double getLaufzeit();
+
     void zyklenInkrementieren(int anzahlZyklen);
 private:
     Steuerwerk* steuerwerk;
