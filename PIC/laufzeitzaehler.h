@@ -14,7 +14,6 @@ public:
 private:
     Steuerwerk* steuerwerk;
     int befehlszyklen;
-    double frequenz;
 };
 
 #endif // LAUFZEITZAEHLER_H

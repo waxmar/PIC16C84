@@ -450,34 +450,40 @@
      <rect>
       <x>750</x>
       <y>40</y>
-      <width>46</width>
-      <height>13</height>
+      <width>101</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>Laufzeit</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="laufzeit">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>735</x>
       <y>60</y>
-      <width>46</width>
-      <height>13</height>
+      <width>61</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>Laufzeit</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="laufzeiteinheit">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>800</x>
       <y>60</y>
       <width>46</width>
-      <height>13</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">

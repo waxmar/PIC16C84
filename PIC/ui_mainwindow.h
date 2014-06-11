@@ -290,13 +290,15 @@ public:
         suchen->setGeometry(QRect(10, 10, 111, 21));
         laufzeitzaehler = new QLabel(centralWidget);
         laufzeitzaehler->setObjectName(QStringLiteral("laufzeitzaehler"));
-        laufzeitzaehler->setGeometry(QRect(750, 40, 46, 13));
+        laufzeitzaehler->setGeometry(QRect(750, 40, 101, 16));
+        laufzeitzaehler->setAlignment(Qt::AlignCenter);
         laufzeit = new QLabel(centralWidget);
         laufzeit->setObjectName(QStringLiteral("laufzeit"));
-        laufzeit->setGeometry(QRect(750, 60, 46, 13));
+        laufzeit->setGeometry(QRect(735, 60, 61, 20));
+        laufzeit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         laufzeiteinheit = new QLabel(centralWidget);
         laufzeiteinheit->setObjectName(QStringLiteral("laufzeiteinheit"));
-        laufzeiteinheit->setGeometry(QRect(770, 60, 46, 13));
+        laufzeiteinheit->setGeometry(QRect(800, 60, 46, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
