@@ -52,6 +52,9 @@ private:
     QLabel* statusLabel;
     QLabel* fsrLabel;
     QLabel* pclathLabel;
+    QLabel* tmr0Label;
+    QLabel* optionLabel;
+    QLabel* intconLabel;
     QPushButton* startButton;
     QPushButton* schrittButton;
     QPushButton* resetButton;
@@ -69,6 +72,9 @@ private:
     void neuZeichnenStatus();
     void neuZeichnenFSR();
     void neuZeichnenPCLATH();
+    void neuZeichnenTMR0();
+    void neuZeichnenOPTION();
+    void neuZeichnenINTCON();
     void neuZeichnenStack();
     void neuZeichnenSpeicherAnsicht();
 

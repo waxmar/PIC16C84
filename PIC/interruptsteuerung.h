@@ -9,6 +9,7 @@ public:
     InterruptSteuerung(Steuerwerk* steuerwerk);
 
     void checkForInterrupt();
+    void timerInterrupt();
 
     static const int GIE = 7;
     static const int EEIE = 6;
@@ -27,7 +28,7 @@ private:
 
     void interruptAusloesen();
 
-    void timerInterrupt();
+
 };
 
 #endif // INTERRUPTSTEUERUNG_H

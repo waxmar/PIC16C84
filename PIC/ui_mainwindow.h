@@ -51,26 +51,32 @@ public:
     QPushButton *reset;
     QWidget *layoutWidget1;
     QGridLayout *gridLayout;
-    QLabel *Programmzaehler;
-    QLabel *programmzaehler;
-    QLabel *WRegister;
-    QLabel *w_reg;
-    QLabel *ZeroBit;
-    QLabel *z;
-    QLabel *CarryBit;
-    QLabel *c;
-    QLabel *DCBit;
-    QLabel *dc;
-    QLabel *FSR;
-    QLabel *fsr;
-    QLabel *PCLATH;
-    QLabel *pclath;
     QLabel *STATUS;
     QLabel *status;
+    QLabel *PCLATH;
+    QLabel *pclath;
+    QLabel *dc;
+    QLabel *DCBit;
+    QLabel *fsr;
+    QLabel *FSR;
+    QLabel *w_reg;
+    QLabel *Programmzaehler;
+    QLabel *CarryBit;
+    QLabel *z;
+    QLabel *ZeroBit;
+    QLabel *c;
+    QLabel *programmzaehler;
+    QLabel *WRegister;
     QPushButton *suchen;
     QLabel *laufzeitzaehler;
     QLabel *laufzeit;
     QLabel *laufzeiteinheit;
+    QLabel *tmr0;
+    QLabel *TMR0;
+    QLabel *option;
+    QLabel *OPTION;
+    QLabel *intcon;
+    QLabel *INTCON;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -176,7 +182,7 @@ public:
         spezialregister->setGeometry(QRect(20, 39, 71, 25));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 249, 77, 83));
+        layoutWidget->setGeometry(QRect(30, 350, 77, 83));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -199,71 +205,21 @@ public:
 
         layoutWidget1 = new QWidget(centralWidget);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 70, 101, 148));
+        layoutWidget1->setGeometry(QRect(10, 70, 91, 141));
         gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        Programmzaehler = new QLabel(layoutWidget1);
-        Programmzaehler->setObjectName(QStringLiteral("Programmzaehler"));
+        STATUS = new QLabel(layoutWidget1);
+        STATUS->setObjectName(QStringLiteral("STATUS"));
 
-        gridLayout->addWidget(Programmzaehler, 0, 0, 1, 1);
+        gridLayout->addWidget(STATUS, 7, 0, 1, 1);
 
-        programmzaehler = new QLabel(layoutWidget1);
-        programmzaehler->setObjectName(QStringLiteral("programmzaehler"));
+        status = new QLabel(layoutWidget1);
+        status->setObjectName(QStringLiteral("status"));
 
-        gridLayout->addWidget(programmzaehler, 0, 1, 1, 1);
-
-        WRegister = new QLabel(layoutWidget1);
-        WRegister->setObjectName(QStringLiteral("WRegister"));
-
-        gridLayout->addWidget(WRegister, 1, 0, 1, 1);
-
-        w_reg = new QLabel(layoutWidget1);
-        w_reg->setObjectName(QStringLiteral("w_reg"));
-
-        gridLayout->addWidget(w_reg, 1, 1, 1, 1);
-
-        ZeroBit = new QLabel(layoutWidget1);
-        ZeroBit->setObjectName(QStringLiteral("ZeroBit"));
-
-        gridLayout->addWidget(ZeroBit, 2, 0, 1, 1);
-
-        z = new QLabel(layoutWidget1);
-        z->setObjectName(QStringLiteral("z"));
-
-        gridLayout->addWidget(z, 2, 1, 1, 1);
-
-        CarryBit = new QLabel(layoutWidget1);
-        CarryBit->setObjectName(QStringLiteral("CarryBit"));
-
-        gridLayout->addWidget(CarryBit, 3, 0, 1, 1);
-
-        c = new QLabel(layoutWidget1);
-        c->setObjectName(QStringLiteral("c"));
-
-        gridLayout->addWidget(c, 3, 1, 1, 1);
-
-        DCBit = new QLabel(layoutWidget1);
-        DCBit->setObjectName(QStringLiteral("DCBit"));
-
-        gridLayout->addWidget(DCBit, 4, 0, 1, 1);
-
-        dc = new QLabel(layoutWidget1);
-        dc->setObjectName(QStringLiteral("dc"));
-
-        gridLayout->addWidget(dc, 4, 1, 1, 1);
-
-        FSR = new QLabel(layoutWidget1);
-        FSR->setObjectName(QStringLiteral("FSR"));
-
-        gridLayout->addWidget(FSR, 5, 0, 1, 1);
-
-        fsr = new QLabel(layoutWidget1);
-        fsr->setObjectName(QStringLiteral("fsr"));
-
-        gridLayout->addWidget(fsr, 5, 1, 1, 1);
+        gridLayout->addWidget(status, 7, 1, 1, 1);
 
         PCLATH = new QLabel(layoutWidget1);
         PCLATH->setObjectName(QStringLiteral("PCLATH"));
@@ -275,15 +231,65 @@ public:
 
         gridLayout->addWidget(pclath, 6, 1, 1, 1);
 
-        STATUS = new QLabel(layoutWidget1);
-        STATUS->setObjectName(QStringLiteral("STATUS"));
+        dc = new QLabel(layoutWidget1);
+        dc->setObjectName(QStringLiteral("dc"));
 
-        gridLayout->addWidget(STATUS, 7, 0, 1, 1);
+        gridLayout->addWidget(dc, 4, 1, 1, 1);
 
-        status = new QLabel(layoutWidget1);
-        status->setObjectName(QStringLiteral("status"));
+        DCBit = new QLabel(layoutWidget1);
+        DCBit->setObjectName(QStringLiteral("DCBit"));
 
-        gridLayout->addWidget(status, 7, 1, 1, 1);
+        gridLayout->addWidget(DCBit, 4, 0, 1, 1);
+
+        fsr = new QLabel(layoutWidget1);
+        fsr->setObjectName(QStringLiteral("fsr"));
+
+        gridLayout->addWidget(fsr, 5, 1, 1, 1);
+
+        FSR = new QLabel(layoutWidget1);
+        FSR->setObjectName(QStringLiteral("FSR"));
+
+        gridLayout->addWidget(FSR, 5, 0, 1, 1);
+
+        w_reg = new QLabel(layoutWidget1);
+        w_reg->setObjectName(QStringLiteral("w_reg"));
+
+        gridLayout->addWidget(w_reg, 1, 1, 1, 1);
+
+        Programmzaehler = new QLabel(layoutWidget1);
+        Programmzaehler->setObjectName(QStringLiteral("Programmzaehler"));
+
+        gridLayout->addWidget(Programmzaehler, 0, 0, 1, 1);
+
+        CarryBit = new QLabel(layoutWidget1);
+        CarryBit->setObjectName(QStringLiteral("CarryBit"));
+
+        gridLayout->addWidget(CarryBit, 3, 0, 1, 1);
+
+        z = new QLabel(layoutWidget1);
+        z->setObjectName(QStringLiteral("z"));
+
+        gridLayout->addWidget(z, 2, 1, 1, 1);
+
+        ZeroBit = new QLabel(layoutWidget1);
+        ZeroBit->setObjectName(QStringLiteral("ZeroBit"));
+
+        gridLayout->addWidget(ZeroBit, 2, 0, 1, 1);
+
+        c = new QLabel(layoutWidget1);
+        c->setObjectName(QStringLiteral("c"));
+
+        gridLayout->addWidget(c, 3, 1, 1, 1);
+
+        programmzaehler = new QLabel(layoutWidget1);
+        programmzaehler->setObjectName(QStringLiteral("programmzaehler"));
+
+        gridLayout->addWidget(programmzaehler, 0, 1, 1, 1);
+
+        WRegister = new QLabel(layoutWidget1);
+        WRegister->setObjectName(QStringLiteral("WRegister"));
+
+        gridLayout->addWidget(WRegister, 1, 0, 1, 1);
 
         suchen = new QPushButton(centralWidget);
         suchen->setObjectName(QStringLiteral("suchen"));
@@ -299,6 +305,24 @@ public:
         laufzeiteinheit = new QLabel(centralWidget);
         laufzeiteinheit->setObjectName(QStringLiteral("laufzeiteinheit"));
         laufzeiteinheit->setGeometry(QRect(800, 60, 46, 21));
+        tmr0 = new QLabel(centralWidget);
+        tmr0->setObjectName(QStringLiteral("tmr0"));
+        tmr0->setGeometry(QRect(63, 220, 46, 13));
+        TMR0 = new QLabel(centralWidget);
+        TMR0->setObjectName(QStringLiteral("TMR0"));
+        TMR0->setGeometry(QRect(10, 220, 47, 13));
+        option = new QLabel(centralWidget);
+        option->setObjectName(QStringLiteral("option"));
+        option->setGeometry(QRect(63, 240, 46, 13));
+        OPTION = new QLabel(centralWidget);
+        OPTION->setObjectName(QStringLiteral("OPTION"));
+        OPTION->setGeometry(QRect(10, 240, 47, 13));
+        intcon = new QLabel(centralWidget);
+        intcon->setObjectName(QStringLiteral("intcon"));
+        intcon->setGeometry(QRect(63, 260, 46, 13));
+        INTCON = new QLabel(centralWidget);
+        INTCON->setObjectName(QStringLiteral("INTCON"));
+        INTCON->setGeometry(QRect(10, 260, 47, 13));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -367,26 +391,32 @@ public:
         go->setText(QApplication::translate("MainWindow", "GO", 0));
         schritt->setText(QApplication::translate("MainWindow", "Schritt", 0));
         reset->setText(QApplication::translate("MainWindow", "Reset", 0));
-        Programmzaehler->setText(QApplication::translate("MainWindow", "PC", 0));
-        programmzaehler->setText(QApplication::translate("MainWindow", "PC", 0));
-        WRegister->setText(QApplication::translate("MainWindow", "W-Reg", 0));
-        w_reg->setText(QApplication::translate("MainWindow", "w_reg", 0));
-        ZeroBit->setText(QApplication::translate("MainWindow", "Zero-Bit", 0));
-        z->setText(QApplication::translate("MainWindow", "Z", 0));
-        CarryBit->setText(QApplication::translate("MainWindow", "Carry-Bit", 0));
-        c->setText(QApplication::translate("MainWindow", "C", 0));
-        DCBit->setText(QApplication::translate("MainWindow", "DC-Bit", 0));
-        dc->setText(QApplication::translate("MainWindow", "DC", 0));
-        FSR->setText(QApplication::translate("MainWindow", "FSR", 0));
-        fsr->setText(QApplication::translate("MainWindow", "FSR", 0));
-        PCLATH->setText(QApplication::translate("MainWindow", "PCLATH", 0));
-        pclath->setText(QApplication::translate("MainWindow", "PCLATH", 0));
         STATUS->setText(QApplication::translate("MainWindow", "STATUS", 0));
         status->setText(QApplication::translate("MainWindow", "STATUS", 0));
+        PCLATH->setText(QApplication::translate("MainWindow", "PCLATH", 0));
+        pclath->setText(QApplication::translate("MainWindow", "PCLATH", 0));
+        dc->setText(QApplication::translate("MainWindow", "DC", 0));
+        DCBit->setText(QApplication::translate("MainWindow", "DC-Bit", 0));
+        fsr->setText(QApplication::translate("MainWindow", "FSR", 0));
+        FSR->setText(QApplication::translate("MainWindow", "FSR", 0));
+        w_reg->setText(QApplication::translate("MainWindow", "w_reg", 0));
+        Programmzaehler->setText(QApplication::translate("MainWindow", "PC", 0));
+        CarryBit->setText(QApplication::translate("MainWindow", "Carry-Bit", 0));
+        z->setText(QApplication::translate("MainWindow", "Z", 0));
+        ZeroBit->setText(QApplication::translate("MainWindow", "Zero-Bit", 0));
+        c->setText(QApplication::translate("MainWindow", "C", 0));
+        programmzaehler->setText(QApplication::translate("MainWindow", "PC", 0));
+        WRegister->setText(QApplication::translate("MainWindow", "W-Reg", 0));
         suchen->setText(QApplication::translate("MainWindow", "Suchen", 0));
         laufzeitzaehler->setText(QApplication::translate("MainWindow", "Laufzeit", 0));
         laufzeit->setText(QApplication::translate("MainWindow", "Laufzeit", 0));
         laufzeiteinheit->setText(QApplication::translate("MainWindow", "\302\265s", 0));
+        tmr0->setText(QApplication::translate("MainWindow", "TMR0", 0));
+        TMR0->setText(QApplication::translate("MainWindow", "TMR0", 0));
+        option->setText(QApplication::translate("MainWindow", "OPTION", 0));
+        OPTION->setText(QApplication::translate("MainWindow", "OPTION", 0));
+        intcon->setText(QApplication::translate("MainWindow", "INTCON", 0));
+        INTCON->setText(QApplication::translate("MainWindow", "INTCON", 0));
     } // retranslateUi
 
 };

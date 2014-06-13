@@ -49,6 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     statusLabel = ui->status;
     fsrLabel = ui->fsr;
     pclathLabel = ui->pclath;
+    tmr0Label = ui->tmr0;
+    optionLabel = ui->option;
+    intconLabel = ui->intcon;
     startButton = ui->go;
     schrittButton = ui->schritt;
     resetButton = ui->reset;
@@ -187,6 +190,24 @@ void MainWindow::neuZeichnenPCLATH()
     pclathLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::PCLATH)));
 }
 
+//Aktualisierung des TMR0-Registers
+void MainWindow::neuZeichnenTMR0()
+{
+    tmr0Label ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::TMR0)));
+}
+
+//Aktualisierung des OPTION-Registers
+void MainWindow::neuZeichnenOPTION()
+{
+    optionLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::OPTION)));
+}
+
+//Aktualisierung des INTCON-Registers
+void MainWindow::neuZeichnenINTCON()
+{
+    intconLabel ->setText(HexConverter::intToHex(steuerwerk->getRam()->lesen(Ram::INTCON)));
+}
+
 //Aktualisierung der Ansicht für den Speicherinhalt
 void MainWindow::neuZeichnenSpeicherAnsicht()
 {
@@ -317,6 +338,9 @@ void MainWindow::erneuernUI()
     neuZeichnenStatus();
     neuZeichnenFSR();
     neuZeichnenPCLATH();
+    neuZeichnenTMR0();
+    neuZeichnenOPTION();
+    neuZeichnenINTCON();
 }
 
 //Öffnen der Help-PDF

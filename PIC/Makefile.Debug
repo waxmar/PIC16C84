@@ -641,6 +641,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		steuerwerk.h \
 		codezeile.h \
 		bitoperationen.h \
+		laufzeitzaehler.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qfiledialog.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qdir.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfileinfo.h \
@@ -927,6 +928,7 @@ debug/steuerwerk.o: steuerwerk.cpp steuerwerk.h \
 		stack.h \
 		laufzeitzaehler.h \
 		timersteuerung.h \
+		interruptsteuerung.h \
 		wregister.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\steuerwerk.o steuerwerk.cpp
 
@@ -1029,7 +1031,51 @@ debug/speicher.o: speicher.cpp speicher.h \
 
 debug/ram.o: ram.cpp ram.h \
 		speicher.h \
-		bitoperationen.h
+		bitoperationen.h \
+		steuerwerk.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/QList \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlist.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qalgorithms.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobal.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qconfig.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qfeatures.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsystemdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qprocessordetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qcompilerdetection.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qglobalstatic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qgenericatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_msvc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_integrity.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qoldbasicatomic.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_vxworks.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_power.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_alpha.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv7.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv6.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_armv5.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_bfin.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_ia64.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_mips.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_s390.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sh4a.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_sparc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_x86.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_cxx11.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_gcc.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qatomic_unix.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qmutex.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qlogging.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qflags.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypeinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		programmspeicher.h \
+		programmzaehler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ram.o ram.cpp
 
 debug/programmspeicher.o: programmspeicher.cpp programmspeicher.h \
@@ -1218,7 +1264,12 @@ debug/timersteuerung.o: timersteuerung.cpp timersteuerung.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		ram.h \
+		speicher.h \
+		laufzeitzaehler.h \
+		bitoperationen.h \
+		interruptsteuerung.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\timersteuerung.o timersteuerung.cpp
 
 debug/laufzeitzaehler.o: laufzeitzaehler.cpp laufzeitzaehler.h \
@@ -1263,7 +1314,9 @@ debug/laufzeitzaehler.o: laufzeitzaehler.cpp laufzeitzaehler.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		interruptsteuerung.h \
+		timersteuerung.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\laufzeitzaehler.o laufzeitzaehler.cpp
 
 debug/interruptsteuerung.o: interruptsteuerung.cpp interruptsteuerung.h \
@@ -1308,7 +1361,11 @@ debug/interruptsteuerung.o: interruptsteuerung.cpp interruptsteuerung.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qtypetraits.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qsysinfo.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qiterator.h \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h
+		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtCore/qrefcount.h \
+		ram.h \
+		speicher.h \
+		bitoperationen.h \
+		alu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\interruptsteuerung.o interruptsteuerung.cpp
 
 debug/hexconverter.o: hexconverter.cpp hexconverter.h \

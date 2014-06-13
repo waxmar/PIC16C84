@@ -279,7 +279,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>249</y>
+      <y>350</y>
       <width>77</width>
       <height>83</height>
      </rect>
@@ -313,92 +313,22 @@
      <rect>
       <x>10</x>
       <y>70</y>
-      <width>101</width>
-      <height>148</height>
+      <width>91</width>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="Programmzaehler">
+     <item row="7" column="0">
+      <widget class="QLabel" name="STATUS">
        <property name="text">
-        <string>PC</string>
+        <string>STATUS</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="programmzaehler">
+     <item row="7" column="1">
+      <widget class="QLabel" name="status">
        <property name="text">
-        <string>PC</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="WRegister">
-       <property name="text">
-        <string>W-Reg</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="w_reg">
-       <property name="text">
-        <string>w_reg</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="ZeroBit">
-       <property name="text">
-        <string>Zero-Bit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="z">
-       <property name="text">
-        <string>Z</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="CarryBit">
-       <property name="text">
-        <string>Carry-Bit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="c">
-       <property name="text">
-        <string>C</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="DCBit">
-       <property name="text">
-        <string>DC-Bit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="dc">
-       <property name="text">
-        <string>DC</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="FSR">
-       <property name="text">
-        <string>FSR</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="fsr">
-       <property name="text">
-        <string>FSR</string>
+        <string>STATUS</string>
        </property>
       </widget>
      </item>
@@ -416,17 +346,87 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="STATUS">
+     <item row="4" column="1">
+      <widget class="QLabel" name="dc">
        <property name="text">
-        <string>STATUS</string>
+        <string>DC</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="status">
+     <item row="4" column="0">
+      <widget class="QLabel" name="DCBit">
        <property name="text">
-        <string>STATUS</string>
+        <string>DC-Bit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="fsr">
+       <property name="text">
+        <string>FSR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="FSR">
+       <property name="text">
+        <string>FSR</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="w_reg">
+       <property name="text">
+        <string>w_reg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="Programmzaehler">
+       <property name="text">
+        <string>PC</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="CarryBit">
+       <property name="text">
+        <string>Carry-Bit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="z">
+       <property name="text">
+        <string>Z</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="ZeroBit">
+       <property name="text">
+        <string>Zero-Bit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="c">
+       <property name="text">
+        <string>C</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="programmzaehler">
+       <property name="text">
+        <string>PC</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="WRegister">
+       <property name="text">
+        <string>W-Reg</string>
        </property>
       </widget>
      </item>
@@ -488,6 +488,84 @@
     </property>
     <property name="text">
      <string>µs</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tmr0">
+    <property name="geometry">
+     <rect>
+      <x>63</x>
+      <y>220</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TMR0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TMR0">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TMR0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="option">
+    <property name="geometry">
+     <rect>
+      <x>63</x>
+      <y>240</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OPTION</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OPTION">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OPTION</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="intcon">
+    <property name="geometry">
+     <rect>
+      <x>63</x>
+      <y>260</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>INTCON</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="INTCON">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>260</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>INTCON</string>
     </property>
    </widget>
   </widget>
