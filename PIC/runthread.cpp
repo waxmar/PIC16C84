@@ -14,6 +14,6 @@ void RunThread::run()
     {
         steuerwerk->schrittSteuern();
 
-        QThread::msleep(500);
+        QThread::msleep(200);
     }
 }

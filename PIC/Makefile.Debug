@@ -629,8 +629,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QPushButton \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qpushbutton.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qabstractbutton.h \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QSplitter \
-		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qsplitter.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QStatusBar \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/qstatusbar.h \
 		E:/Zeug/Qt/5.2.1/mingw48_32/include/QtWidgets/QTableWidget \

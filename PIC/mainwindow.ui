@@ -73,7 +73,7 @@
      <string>HILFE</string>
     </property>
    </widget>
-   <widget class="QLabel" name="stack_2">
+   <widget class="QLabel" name="stacklabel">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -443,6 +443,51 @@
     </property>
     <property name="text">
      <string>Suchen</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="laufzeitzaehler">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>40</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Laufzeit</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="laufzeit">
+    <property name="geometry">
+     <rect>
+      <x>735</x>
+      <y>60</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Laufzeit</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="laufzeiteinheit">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>60</y>
+      <width>46</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>µs</string>
     </property>
    </widget>
   </widget>

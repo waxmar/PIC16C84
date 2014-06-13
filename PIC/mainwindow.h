@@ -44,6 +44,7 @@ private:
     QListWidget* befehlslisteWidget;
     QListWidget* stackWidget;
     QLabel* programmzaehlerLabel;
+    QLabel* laufzeitzaehlerLabel;
     QLabel* wregisterLabel;
     QLabel* zLabel;
     QLabel* cLabel;
@@ -60,6 +61,7 @@ private:
     QPushButton* hilfeButton;
 
     void neuZeichnenProgrammzaehler();
+    void neuZeichnenLaufzeit();
     void neuZeichnenW();
     void neuZeichnenZ();
     void neuZeichnenC();
