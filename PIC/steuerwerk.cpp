@@ -9,6 +9,7 @@
 #include "stack.h"
 #include "laufzeitzaehler.h"
 #include "timersteuerung.h"
+#include "interruptsteuerung.h"
 #include "wregister.h"
 
 #include <iostream>
@@ -24,6 +25,7 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     w = new Wregister();
     laufzeit = new LaufzeitZaehler(this);
     timerSteuerung = new TimerSteuerung(this);
+    InterruptSteuerung = new InterruptSteuerung(this);
 }
 
 Programmspeicher* Steuerwerk::getProgrammspeicher()
@@ -45,6 +47,11 @@ Ram* Steuerwerk::getRam()
 Stack* Steuerwerk::getStack()
 {
     return stack;
+}
+
+Alu* Steuerwerk::getAlu()
+{
+    return alu;
 }
 
 Wregister* Steuerwerk::getW()
@@ -75,6 +82,11 @@ LaufzeitZaehler* Steuerwerk::getLaufzeitZaehler()
 TimerSteuerung* Steuerwerk::getTimerSteuerung()
 {
     return timerSteuerung;
+}
+
+InterruptSteuerung* Steuerwerk::getInterruptSteuerung()
+{
+    return InterruptSteuerung;
 }
 
 void Steuerwerk::befehlErkennen(int befehl)

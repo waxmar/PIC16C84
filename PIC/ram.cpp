@@ -94,6 +94,14 @@ void Ram::schreiben(int wert, int adresse)
     }
 }
 
+int* Ram::getReferenceOf(int adresse, int bank)
+{
+    if(bank != 0 && bank != 1)
+        return NULL;
+
+    return adressen[bank][adresse];
+}
+
 //Ermmitteln der zur Zeit aktiven Bank
 int Ram::getActiveBank()
 {

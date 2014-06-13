@@ -13,6 +13,7 @@ class Stack;
 class Wregister;
 class LaufzeitZaehler;
 class TimerSteuerung;
+class InterruptSteuerung;
 
 class Steuerwerk
 {
@@ -23,9 +24,11 @@ public:
     Programmzaehler* getProgrammzaehler();
     Ram* getRam();
     Stack* getStack();
+    Alu* getAlu();
     Wregister* getW();
     LaufzeitZaehler* getLaufzeitZaehler();
     TimerSteuerung* getTimerSteuerung();
+    InterruptSteuerung* getInterruptSteuerung();
 
     void schrittSteuern();
 
@@ -38,6 +41,7 @@ private:
     Wregister* w;
     LaufzeitZaehler* laufzeit;
     TimerSteuerung* timerSteuerung;
+    InterruptSteuerung* interruptSteuerung;
 
     void befehlErkennen(int befehl);
 };

@@ -22,6 +22,8 @@ public:
     void setzeDCBit();
     void loescheDCBit();
 
+    int* getReferenceOf(int adresse, int bank);
+
     static const int TMR0 = 0x01;
     static const int OPTION = 0x01;
     static const int PCL = 0x02;

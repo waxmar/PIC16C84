@@ -1,5 +1,6 @@
 #include "laufzeitzaehler.h"
 #include "steuerwerk.h"
+#include "interruptsteuerung.h"
 
 LaufzeitZaehler::LaufzeitZaehler(Steuerwerk* steuerwerk)
 {
@@ -16,7 +17,10 @@ void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
     for(int i=0; i < anzahlZyklen; i++)
     {
        befehlszyklen++;
-       // Timer
+       // Timer nach jedem Zyklus handlen
+
+       // Interrupts nach jedem Zyklus prüfen
+       steuerwerk->getInterruptSteuerung()->checkForInterrupt();
     }
 }
 
