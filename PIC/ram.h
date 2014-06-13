@@ -3,10 +3,12 @@
 
 #include "speicher.h"
 
+class Steuerwerk;
+
 class Ram : public Speicher
 {
 public:
-    Ram();
+    Ram(Steuerwerk* steuerwerk);
 
     int lesen(int adresse, int bank);
     int lesen(int adresse);
@@ -38,17 +40,17 @@ public:
 
 private:
     //Speicherbänke definieren S.6
-     int bank1[0x50];
-     int bank0[0x50];
+    int bank1[0x50];
+    int bank0[0x50];
 
-     // Mapping der Speicherbänke
-     int* adressen[2][0x50];
+    // Mapping der Speicherbänke
+    int* adressen[2][0x50];
+
+    Steuerwerk* steuerwerk;
 
 
-
-
-     // Abfrage der aktuellen Ba
-     int getActiveBank();
+    // Abfrage der aktuellen Ba
+    int getActiveBank();
 
 };
 

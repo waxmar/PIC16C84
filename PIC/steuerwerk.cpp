@@ -19,7 +19,7 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     programmspeicher = new Programmspeicher();
     programmzaehler = new Programmzaehler();
     alu = new Alu(this);
-    ram = new Ram();
+    ram = new Ram(this);
     stack = new Stack();
     w = new Wregister();
     laufzeit = new LaufzeitZaehler(this);

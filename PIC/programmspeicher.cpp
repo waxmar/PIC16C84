@@ -47,3 +47,8 @@ QList<Codezeile>::iterator Programmspeicher::getErsteAdresse()
 {
     return rom.begin();
 }
+
+int Programmspeicher::getProgrammspeicherLaenge()
+{
+    return rom.size();
+}

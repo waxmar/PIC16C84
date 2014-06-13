@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include "bitoperationen.h"
 
+#include "steuerwerk.h"
+#include "programmspeicher.h"
+#include "programmzaehler.h"
+
 #include <iostream>
 
-Ram::Ram()
+Ram::Ram(Steuerwerk* steuerwerk)
 {
-
+    this->steuerwerk = steuerwerk;
 
     for (int i=0; i<0x50;i++)
     {
@@ -76,6 +80,17 @@ void Ram::schreiben(int wert, int adresse)
             adressen[1][0] = adressen[0][0] = adressen[1][wert & 0x7F];
         else
             adressen[1][0] = adressen[0][0] = adressen[0][wert & 0x7F];
+    }
+
+    if(adresse == Ram::PCLATH)
+    {
+        int pclath_wert = lesen(Ram::PCLATH, 0);
+        int pc_wert = (pclath_wert << 8) + (wert & 0x00ff);
+
+        if(pc_wert > steuerwerk->getProgrammspeicher()->getProgrammspeicherLaenge())
+            return;
+
+        steuerwerk->getProgrammzaehler()->schreiben(pc_wert, Speicher::NOADDRESS);
     }
 }
 

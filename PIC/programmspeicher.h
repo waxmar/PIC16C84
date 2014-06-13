@@ -16,6 +16,8 @@ public:
     QList<Codezeile>::iterator getErsteAdresse();
     Codezeile* getCodezeileAt(int adresse);
     Codezeile* findCodezeileByLinenumber(int linenumber);
+
+    int getProgrammspeicherLaenge();
 private:
     QList<Codezeile> rom;
 };
