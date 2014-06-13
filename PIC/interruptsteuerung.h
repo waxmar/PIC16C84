@@ -26,6 +26,8 @@ private:
     int* intcon_register;
 
     void interruptAusloesen();
+
+    void timerInterrupt();
 };
 
 #endif // INTERRUPTSTEUERUNG_H

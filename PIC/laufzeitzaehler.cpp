@@ -28,3 +28,8 @@ double LaufzeitZaehler::getLaufzeit()
 {
    return (double)befehlszyklen * 0.4d;
 }
+
+int LaufzeitZaehler::getZyklen()
+{
+    return befehlszyklen;
+}

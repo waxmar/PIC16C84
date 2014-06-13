@@ -25,7 +25,7 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     w = new Wregister();
     laufzeit = new LaufzeitZaehler(this);
     timerSteuerung = new TimerSteuerung(this);
-    InterruptSteuerung = new InterruptSteuerung(this);
+    interruptSteuerung = new InterruptSteuerung(this);
 }
 
 Programmspeicher* Steuerwerk::getProgrammspeicher()
@@ -86,7 +86,7 @@ TimerSteuerung* Steuerwerk::getTimerSteuerung()
 
 InterruptSteuerung* Steuerwerk::getInterruptSteuerung()
 {
-    return InterruptSteuerung;
+    return interruptSteuerung;
 }
 
 void Steuerwerk::befehlErkennen(int befehl)

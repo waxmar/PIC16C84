@@ -35,3 +35,8 @@ void InterruptSteuerung::interruptAusloesen()
 
     steuerwerk->getAlu()->ausfuehrenCALL(INTERRUPT_ADDRESS);
 }
+
+void InterruptSteuerung::timerInterrupt()
+{
+    *intcon_register = Bitoperationen::setzeBit(*intcon_register, T0IF);
+}
