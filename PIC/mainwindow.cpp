@@ -348,7 +348,7 @@ void MainWindow::hilfeOeffnen()
 {
     QString path = QDir::currentPath();
 
-    QDesktopServices::openUrl(QUrl(path + "/help.pdf"));
+    QDesktopServices::openUrl(QUrl(path + "/PIC-Doku.pdf"));
 
 }
 
