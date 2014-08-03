@@ -28,38 +28,44 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     interruptSteuerung = new InterruptSteuerung(this);
 }
 
+//Getter für Programmspeicher-Inhalt
 Programmspeicher* Steuerwerk::getProgrammspeicher()
 {
     return programmspeicher;
 
 }
 
+//Getter für Programmzähler
 Programmzaehler* Steuerwerk::getProgrammzaehler()
 {
     return programmzaehler;
 }
 
+//Getter für Ram-Inhalt
 Ram* Steuerwerk::getRam()
 {
     return ram;
 }
 
+//Getter für Stack-Inhalt
 Stack* Steuerwerk::getStack()
 {
     return stack;
 }
 
+//Getter für Alu
 Alu* Steuerwerk::getAlu()
 {
     return alu;
 }
 
+//Getter für Inhalt des W-Registers
 Wregister* Steuerwerk::getW()
 {
     return w;
 }
 
-//Steuerung eines einzelnen Schrittes (ZÃ¤hlerstand erhÃ¶hen, Befehl lesen - parsen - ausfÃ¼hren, OberflÃ¤che aktualiseren)
+//Steuerung eines einzelnen Schrittes (Zählerstand erhöhen, Befehl lesen - parsen - ausführen, Oberfläche aktualiseren)
 void Steuerwerk::schrittSteuern()
 {
     gui->fokusAlteProgrammzeileEntfernen();
@@ -74,11 +80,13 @@ void Steuerwerk::schrittSteuern()
     gui->erneuernUI();
 }
 
+//Getter für die Laufzeit
 LaufzeitZaehler* Steuerwerk::getLaufzeitZaehler()
 {
     return laufzeit;
 }
 
+//Getter für Timer-Steuerung
 TimerSteuerung* Steuerwerk::getTimerSteuerung()
 {
     return timerSteuerung;
@@ -89,6 +97,7 @@ InterruptSteuerung* Steuerwerk::getInterruptSteuerung()
     return interruptSteuerung;
 }
 
+//Befehle werden erkannt und an die Alu weter gegeben
 void Steuerwerk::befehlErkennen(int befehl)
 {
     // ADDWF parsen

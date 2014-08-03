@@ -14,7 +14,7 @@ int Codezeile::getBefehl()
     return befehl;
 }
 
-//prÃ¼ft ob in der aktuellen Zeile ein Breakpoint gesetzt wurde
+//prüft ob in der aktuellen Zeile ein Breakpoint gesetzt wurde
 bool Codezeile::isBreakpoint()
 {
     return breakpoint;

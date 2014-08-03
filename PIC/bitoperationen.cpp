@@ -4,7 +4,7 @@ Bitoperationen::Bitoperationen()
 {
 }
 
-//prÃ¼ft ob ein bestimmtes Bit auf 1 gesetzt ist
+//prüft ob ein bestimmtes Bit auf 1 gesetzt ist
 bool Bitoperationen::pruefeBit(int wert, int bit)
 {
     return ((wert >> bit) & 0x01);

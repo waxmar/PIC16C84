@@ -31,7 +31,7 @@ Ram::Ram(Steuerwerk* steuerwerk)
     adressen[0][0x07] = NULL;
     adressen[1][0x07] = NULL;
 
-    // Defaultwerte fÃ¼r Speicher initialisieren!
+    // Defaultwerte für Speicher initialisieren!
     *adressen[1][OPTION] = 0xff;
     *adressen[0][STATUS] = 0x18;
     *adressen[1][TRISA] = 0xff;

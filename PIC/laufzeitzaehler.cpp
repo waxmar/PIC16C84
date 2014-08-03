@@ -9,10 +9,10 @@ LaufzeitZaehler::LaufzeitZaehler(Steuerwerk* steuerwerk)
     befehlszyklen = 0;
 }
 
-//Anzahl der Befehlszyklen wird um 1 bzw. 2 erhÃ¶ht
+//Anzahl der Befehlszyklen wird um 1 bzw. 2 erhöht
 void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
 {
-    if(anzahlZyklen != 1 && anzahlZyklen != 2)
+    if(anzahlZyklen != 1 && anzahlZyklen != 2) //prüft ob Erhöhung ein gültiger Wert ist
         return;
 
     for(int i=0; i < anzahlZyklen; i++)
@@ -21,7 +21,7 @@ void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
        // Timer nach jedem Zyklus handlen
        steuerwerk->getTimerSteuerung()->handleTimer0();
 
-       // Interrupts nach jedem Zyklus prÃ¼fen
+       // Interrupts nach jedem Zyklus prüfen
        steuerwerk->getInterruptSteuerung()->checkForInterrupt();
     }
 }

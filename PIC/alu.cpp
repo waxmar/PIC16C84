@@ -22,6 +22,7 @@ void Alu::zaehlerstandErhoehen()
     steuerwerk->getProgrammzaehler()->schreiben(zaehlerstand+1,Speicher::NOADDRESS);
 }
 
+// addiert ausgewähltes Register mit W-Register und speichert Ergebnis an gewähltem Ort
 void Alu::ausfuehrenADDWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -45,7 +46,7 @@ void Alu::ausfuehrenADDWF(int befehl)
     else
         steuerwerk->getRam()->loescheDCBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -53,6 +54,7 @@ void Alu::ausfuehrenADDWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// Bitweise Verundung von gewähltem Register und W-Register, Speicherung an gewähltem Ort
 void Alu::ausfuehrenANDWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -66,7 +68,7 @@ void Alu::ausfuehrenANDWF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis,(befehl & 0x007f));
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -74,6 +76,7 @@ void Alu::ausfuehrenANDWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// löscht ein Bit eines gewählten Registers
 void Alu::ausfuehrenCLRF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -86,6 +89,7 @@ void Alu::ausfuehrenCLRF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// löscht ein ausgewähltes Register
 void Alu::ausfuehrenCLRW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -96,6 +100,7 @@ void Alu::ausfuehrenCLRW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// bildet das Komplement eines Registers und speichert es an einem gewählten Ort
 void Alu::ausfuehrenCOMF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -108,7 +113,7 @@ void Alu::ausfuehrenCOMF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -117,6 +122,7 @@ void Alu::ausfuehrenCOMF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// erniedrigt ein ausgewähltes Registers um 1
 void Alu::ausfuehrenDECF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -129,7 +135,7 @@ void Alu::ausfuehrenDECF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -138,6 +144,7 @@ void Alu::ausfuehrenDECF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// erniedrigt ein ausgewähltes Registers um 1, falls das Ergebnis 0 ist wird des nächste Befehl übersprungen
 void Alu::ausfuehrenDECFSZ(int befehl)
 {
     zaehlerstandErhoehen();
@@ -150,7 +157,7 @@ void Alu::ausfuehrenDECFSZ(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -166,6 +173,7 @@ void Alu::ausfuehrenDECFSZ(int befehl)
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// erhöht ein ausgewähltes Register um 1
 void Alu::ausfuehrenINCF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -178,7 +186,7 @@ void Alu::ausfuehrenINCF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -187,6 +195,7 @@ void Alu::ausfuehrenINCF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// erhöht ein ausgewähltes Register um 1, falls das Zero-Bit gesetzt wird, wird der nächste Befehl übersprungen
 void Alu::ausfuehrenINCFSZ(int befehl)
 {
     zaehlerstandErhoehen();
@@ -199,7 +208,7 @@ void Alu::ausfuehrenINCFSZ(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -215,6 +224,7 @@ void Alu::ausfuehrenINCFSZ(int befehl)
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// Bitweises entweder-oder ein gewählten Registers und des W-Registers
 void Alu::ausfuehrenIORWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -228,7 +238,7 @@ void Alu::ausfuehrenIORWF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis,(befehl & 0x007f));
 
     else
@@ -237,6 +247,7 @@ void Alu::ausfuehrenIORWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// Kopiert den Inhalt ein Registers in ein anderes Register
 void Alu::ausfuehrenMOVF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -248,7 +259,7 @@ void Alu::ausfuehrenMOVF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(f, (befehl & 0x007f));
 
     else
@@ -257,6 +268,7 @@ void Alu::ausfuehrenMOVF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// schreibt den Inhalt eines gewählten Registers in das W-Register
 void Alu::ausfuehrenMOVWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -268,6 +280,7 @@ void Alu::ausfuehrenMOVWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// führt keinen Befehl aus, nur Programmzähler wird erhöht
 void Alu::ausfuehrenNOP()
 {
     zaehlerstandErhoehen();
@@ -275,6 +288,7 @@ void Alu::ausfuehrenNOP()
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// schiebt alle Bits eines gewählten Registers nach links, Carry-Bit wird eingeschoben
 void Alu::ausfuehrenRLF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -289,7 +303,7 @@ void Alu::ausfuehrenRLF(int befehl)
     else
         steuerwerk->getRam()->loescheCBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -298,6 +312,7 @@ void Alu::ausfuehrenRLF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// schiebt alle Bits eines gewählten Registers nach rechts, Carry-Bit wird eingeschoben
 void Alu::ausfuehrenRRF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -312,7 +327,7 @@ void Alu::ausfuehrenRRF(int befehl)
     else
         steuerwerk->getRam()->loescheCBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
 
     else
@@ -321,6 +336,7 @@ void Alu::ausfuehrenRRF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// subtrahiert ein gewähltes Registers vom W-Register
 void Alu::ausfuehrenSUBWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -344,7 +360,7 @@ void Alu::ausfuehrenSUBWF(int befehl)
     else
         steuerwerk->getRam()->loescheDCBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -352,6 +368,7 @@ void Alu::ausfuehrenSUBWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// tauscht die oberen 4 Bits mit den unteren 4 bits eines gewählten Registers
 void Alu::ausfuehrenSWAPF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -366,6 +383,7 @@ void Alu::ausfuehrenSWAPF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// Bitweises exklusiv-oder eines gewählten Registers
 void Alu::ausfuehrenXORWF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -379,7 +397,7 @@ void Alu::ausfuehrenXORWF(int befehl)
     else
         steuerwerk->getRam()->loescheZBit();
 
-    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF)
+    if (Bitoperationen::pruefeBit(befehl,7) == ZURUECKLADENINF) // prüft wo das Ergebnis gespeichert werden soll
         steuerwerk->getRam()->schreiben(ergebnis, (befehl & 0x007f));
     else
         steuerwerk->getW()->schreiben(ergebnis, Speicher::NOADDRESS);
@@ -387,6 +405,7 @@ void Alu::ausfuehrenXORWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// löscht ein bestimmtes Bit eines gewählten Registers
 void Alu::ausfuehrenBCF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -399,6 +418,7 @@ void Alu::ausfuehrenBCF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// setzt ein bestimmtes Bit eines gewählten Registers
 void Alu::ausfuehrenBSF(int befehl)
 {
     zaehlerstandErhoehen();
@@ -411,6 +431,7 @@ void Alu::ausfuehrenBSF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// prüft ein bestimmmtes Bit eines gewählten Registers, ist es 0 wird der nächste Befehl übersprungen
 void Alu::ausfuehrenBTFSC(int befehl)
 {
     zaehlerstandErhoehen();
@@ -428,6 +449,7 @@ void Alu::ausfuehrenBTFSC(int befehl)
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// prüft ein bestimmmtes Bit eines gewählten Registers, ist es 1 wird der nächste Befehl übersprungen
 void Alu::ausfuehrenBTFSS(int befehl)
 {
     zaehlerstandErhoehen();
@@ -444,6 +466,7 @@ void Alu::ausfuehrenBTFSS(int befehl)
     else
         steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);}
 
+// addiert ein bestimmten Wert zum W-Register
 void Alu::ausfuehrenADDLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -472,6 +495,7 @@ void Alu::ausfuehrenADDLW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// Verundung einer Konstanten mit dem W-Register
 void Alu::ausfuehrenANDLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -490,6 +514,7 @@ void Alu::ausfuehrenANDLW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// ruft ein Unterprogramm auf
 void Alu::ausfuehrenCALL(int befehl)
 {
     int ruecksprungAdresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS)+1;
@@ -501,6 +526,7 @@ void Alu::ausfuehrenCALL(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// setzt den Watchdog zurück // MUSS NOCH IMPLEMENTIERT WERDEN !! //
 void Alu::ausfuehrenCLRWDT(int befehl)
 {
     zaehlerstandErhoehen();
@@ -508,6 +534,7 @@ void Alu::ausfuehrenCLRWDT(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// führt einen Sprungbefehl aus
 void Alu::ausfuehrenGOTO(int befehl)
 {
 
@@ -518,6 +545,7 @@ void Alu::ausfuehrenGOTO(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// entweder-oder einer Konstanten und dem W-Register
 void Alu::ausfuehrenIORLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -536,6 +564,7 @@ void Alu::ausfuehrenIORLW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// schreibt eine Konstante in das W-Register
 void Alu::ausfuehrenMOVLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -552,6 +581,7 @@ void Alu::ausfuehrenRETFIE(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// schreibt eine Konstante in das W-Register und springt zur obersten Adresse auf dem Stack
 void Alu::ausfuehrenRETLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -560,13 +590,14 @@ void Alu::ausfuehrenRETLW(int befehl)
 
     steuerwerk->getW()->schreiben(konstante,Speicher::NOADDRESS);
 
-    //oberste Adresse vom Stack holen und zurÃ¼ckgeben, dann pop
+    //oberste Adresse vom Stack holen und zurückgeben, dann pop
     int ruecksprungadresse = steuerwerk->getStack()->lesen(Speicher::NOADDRESS);
     steuerwerk->getProgrammzaehler()->schreiben(ruecksprungadresse, Speicher::NOADDRESS);
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// springt zur obersten Adresse auf dem Stack
 void Alu::ausfuehrenRETURN(int befehl)
 {
     zaehlerstandErhoehen();
@@ -577,11 +608,13 @@ void Alu::ausfuehrenRETURN(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
+// führt eines Schlaf-Befehl aus // MUSS NOCH IMPLEMENTIERT WERDEN !! //
 void Alu::ausfuehrenSLEEP(int befehl)
 {
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// subtrahiert eine Konstante vom W-Register
 void Alu::ausfuehrenSUBLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -610,6 +643,7 @@ void Alu::ausfuehrenSUBLW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// exklusiv-oder einer Konstanten und des W-Registers
 void Alu::ausfuehrenXORLW(int befehl)
 {
     zaehlerstandErhoehen();
@@ -628,6 +662,7 @@ void Alu::ausfuehrenXORLW(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
+// berechnet die aktuelle Rücksprungadresse
 int Alu::sprungadresseBerechnen(int befehl)
 {
     int konstante = (befehl & 0x7ff);
@@ -638,16 +673,19 @@ int Alu::sprungadresseBerechnen(int befehl)
     return sprungadresse;
 }
 
+// prüft das Carry-Bit
 bool Alu::pruefeCarry(int ergebnis)
 {
     return (ergebnis >= 0x100);
 }
 
+// prüft das Zero-Bit
 bool Alu::pruefeZero(int ergebnis)
 {
     return ((ergebnis & 0x00ff) == 0);
 }
 
+// prüft das Digit-Carry-Bit
 bool Alu::pruefeDigitCarry(int konstante, int w)
 {
     int ergebnis = (konstante & 0x000f) + (w & 0x000f);

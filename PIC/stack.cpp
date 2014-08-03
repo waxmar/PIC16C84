@@ -14,7 +14,7 @@ int Stack::lesen(int adresse)
     return ruecksprungAdresse;
 }
 
-//Legt eine RÃ¼cksprungadresse auf den Stack
+//Legt eine Rücksprungadresse auf den Stack
 void Stack::schreiben(int wert, int adresse)
 {
     stack.append(wert);

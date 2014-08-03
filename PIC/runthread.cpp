@@ -8,12 +8,13 @@ RunThread::RunThread(Steuerwerk* steuerwerk)
     this->steuerwerk = steuerwerk;
 }
 
+//Durchlauf eines Programmes
 void RunThread::run()
 {
     while(steuerwerk->gui->threadIsAlive)
     {
         steuerwerk->schrittSteuern();
 
-        QThread::msleep(200);
+        QThread::msleep(200); //Pause von 0,2 Sekunden zwecks Sichtbarkeit
     }
 }

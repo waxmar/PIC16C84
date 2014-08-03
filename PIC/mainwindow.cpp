@@ -98,6 +98,7 @@ void MainWindow::oeffneDateiBrowserDialog()
     erneuernUI();
 }
 
+// Reset der Oberfläche mit bestimmten Werten
 void MainWindow::resetUI()
 {
     steuerwerk->getProgrammzaehler()->schreiben(0x00,Speicher::NOADDRESS);
@@ -113,6 +114,7 @@ void MainWindow::resetUI()
     erneuernUI();
 }
 
+// Steuerung eines Befehles
 void MainWindow::schrittAusfuehren()
 {
     steuerwerk->schrittSteuern();
@@ -250,6 +252,7 @@ void MainWindow::registerBaktualisieren(int reihe, int spalte)
     neuZeichnenSpeicherAnsicht();
 }
 
+// Ausführung aller Befehle nacheinander
 void MainWindow::goButtonGeklickt()
 {   
     cout << "signal recieved" << endl;
@@ -343,7 +346,7 @@ void MainWindow::erneuernUI()
     neuZeichnenINTCON();
 }
 
-//Ã–ffnen der Help-PDF
+//Öffnen der Help-PDF
 void MainWindow::hilfeOeffnen()
 {
     QString path = QDir::currentPath();
@@ -352,6 +355,7 @@ void MainWindow::hilfeOeffnen()
 
 }
 
+//Fokus vom letzten Befehl aufheben
 void MainWindow::fokusAlteProgrammzeileEntfernen()
 {
     int adresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
@@ -360,6 +364,7 @@ void MainWindow::fokusAlteProgrammzeileEntfernen()
     befehlslisteWidget->item(textzeile)->setBackground(Qt::white);
 }
 
+//Fokus auf aktuellen Befehl setzen
 void MainWindow::fokusAufAktuelleProgrammzeile()
 {
     int adresse = steuerwerk->getProgrammzaehler()->lesen(Speicher::NOADDRESS);
@@ -370,6 +375,7 @@ void MainWindow::fokusAufAktuelleProgrammzeile()
     befehlslisteWidget->clearSelection();
 }
 
+//Breakpoint wird bei Doppelklick gesetzt
 void MainWindow::setzeBreakpoint(QModelIndex index)
 {
     int textzeile = index.row();
