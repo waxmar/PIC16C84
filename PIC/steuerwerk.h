@@ -14,6 +14,7 @@ class Wregister;
 class LaufzeitZaehler;
 class TimerSteuerung;
 class InterruptSteuerung;
+class Watchdog;
 
 class Steuerwerk
 {
@@ -29,6 +30,7 @@ public:
     LaufzeitZaehler* getLaufzeitZaehler();
     TimerSteuerung* getTimerSteuerung();
     InterruptSteuerung* getInterruptSteuerung();
+    Watchdog* getWatchdog();
 
     void schrittSteuern();
 
@@ -42,6 +44,7 @@ private:
     LaufzeitZaehler* laufzeit;
     TimerSteuerung* timerSteuerung;
     InterruptSteuerung* interruptSteuerung;
+    Watchdog* watchdog;
 
     void befehlErkennen(int befehl);
 };

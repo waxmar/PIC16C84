@@ -11,6 +11,8 @@
 #include "timersteuerung.h"
 #include "interruptsteuerung.h"
 #include "wregister.h"
+#include "watchdog.h"
+
 
 #include <iostream>
 
@@ -26,6 +28,7 @@ Steuerwerk::Steuerwerk(MainWindow* gui)
     laufzeit = new LaufzeitZaehler(this);
     timerSteuerung = new TimerSteuerung(this);
     interruptSteuerung = new InterruptSteuerung(this);
+    watchdog = new Watchdog(this);
 }
 
 //Getter für Programmspeicher-Inhalt
@@ -33,6 +36,11 @@ Programmspeicher* Steuerwerk::getProgrammspeicher()
 {
     return programmspeicher;
 
+}
+
+Watchdog* Steuerwerk::getWatchdog()
+{
+    return watchdog;
 }
 
 //Getter für Programmzähler

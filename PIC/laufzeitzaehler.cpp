@@ -2,6 +2,7 @@
 #include "steuerwerk.h"
 #include "interruptsteuerung.h"
 #include "timersteuerung.h"
+#include "watchdog.h"
 
 LaufzeitZaehler::LaufzeitZaehler(Steuerwerk* steuerwerk)
 {
@@ -23,6 +24,8 @@ void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
 
        // Interrupts nach jedem Zyklus prüfen
        steuerwerk->getInterruptSteuerung()->checkForInterrupt();
+
+       steuerwerk->getWatchdog()->incrementWDT();
     }
 }
 
