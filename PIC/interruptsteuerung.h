@@ -10,6 +10,7 @@ public:
 
     void checkForInterrupt();
     void timerInterrupt();
+    void setGIEFlag();
 
     static const int GIE = 7;
     static const int EEIE = 6;
@@ -21,6 +22,8 @@ public:
     static const int RBIF = 0;
 
     static const int INTERRUPT_ADDRESS = 0x0004;
+
+
 
 private:
     Steuerwerk* steuerwerk;

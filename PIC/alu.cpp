@@ -6,6 +6,7 @@
 #include "wregister.h"
 #include "bitoperationen.h"
 #include "laufzeitzaehler.h"
+#include "interruptsteuerung.h"
 
 #include <iostream>
 
@@ -578,6 +579,15 @@ void Alu::ausfuehrenMOVLW(int befehl)
 
 void Alu::ausfuehrenRETFIE(int befehl)
 {
+    zaehlerstandErhoehen();
+
+    // oberste Adresse vom Stack holen und zurückgeben, dann pop
+    int ruecksprungadresse = steuerwerk->getStack()->lesen(Speicher::NOADDRESS);
+    steuerwerk->getProgrammzaehler()->schreiben(ruecksprungadresse, Speicher::NOADDRESS);
+
+    // GIE-Flag auf 1 setzen
+    steuerwerk->getInterruptSteuerung()->setGIEFlag();
+
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 

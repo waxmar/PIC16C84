@@ -40,3 +40,8 @@ void InterruptSteuerung::timerInterrupt()
 {
     *intcon_register = Bitoperationen::setzeBit(*intcon_register, T0IF);
 }
+
+void InterruptSteuerung::setGIEFlag()
+{
+    *intcon_register = Bitoperationen::setzeBit(*intcon_register, GIE);
+}
