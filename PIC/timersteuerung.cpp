@@ -43,7 +43,7 @@ void TimerSteuerung::handleTimer0()
 int TimerSteuerung::calculatePsaTeiler()
 {
     int exponent = (*option_register & 0x07);
-    return (int) pow(2.0d, (double)(exponent + 1));
+    return (int) pow(2.0, (double)(exponent + 1));
 }
 
 bool TimerSteuerung::externerTakt(int aktuellerWert)

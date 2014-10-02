@@ -31,7 +31,7 @@ void Watchdog::resetWDT() {
 int Watchdog::calculatePsaTeiler()
 {
     int exponent = (*option_register & 0x07);
-    return (int) pow(2.0d, (double)(exponent));
+    return (int) pow(2.0, (double)(exponent));
 }
 
 
