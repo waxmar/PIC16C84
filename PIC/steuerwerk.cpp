@@ -154,7 +154,7 @@ void Steuerwerk::befehlErkennen(int befehl)
 
     // MOVWF parsen
     if((befehl & 0x3f80) == 0x0080)
-        alu->ausfuehrenADDWF(befehl);
+        alu->ausfuehrenMOVWF(befehl);
 
     // NOP parsen
     if((befehl & 0x3f9f) == 0)
