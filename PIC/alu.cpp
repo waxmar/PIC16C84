@@ -527,7 +527,7 @@ void Alu::ausfuehrenCALL(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(2);
 }
 
-// setzt den Watchdog zurück // MUSS NOCH IMPLEMENTIERT WERDEN !! //
+// setzt den Watchdog zurück
 void Alu::ausfuehrenCLRWDT(int befehl)
 {
     zaehlerstandErhoehen();

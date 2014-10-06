@@ -31,7 +31,7 @@ void LaufzeitZaehler::zyklenInkrementieren(int anzahlZyklen)
 
 double LaufzeitZaehler::getLaufzeit()
 {
-   return (double)befehlszyklen * 0.4;
+   return (double)befehlszyklen * 0.4; //Quarzfrequenz
 }
 
 int LaufzeitZaehler::getZyklen()
