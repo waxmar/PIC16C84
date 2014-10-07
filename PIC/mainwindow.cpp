@@ -304,22 +304,22 @@ void MainWindow::registerAnsichtInitialisieren()
 {
     for (int i = 0; i < 8; i++)
     {
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x05,0),7-i) == 1)
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x05,0),7-i) == 1)     //Speicherinhalt des Registers A
                 registerA->setItem(1,i,new QTableWidgetItem("1"));
     else
                 registerA->setItem(1,i,new QTableWidgetItem("0"));
 
-    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x05,1),7-i) == 1)
+    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x05,1),7-i) == 1)    //Anzeige ob Eingabe oder Ausgabe
                 registerA->setItem(0,i,new QTableWidgetItem("i"));
     else
                 registerA->setItem(0,i,new QTableWidgetItem("o"));
 
-    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x06,0),7-i) == 1)
+    if (Bitoperationen::zeigeBit(steuerwerk->getRam()->lesen(0x06,0),7-i) == 1)     //Speicherinhalt des Registers B
                 registerB->setItem(1,i,new QTableWidgetItem("1"));
     else
                 registerB->setItem(1,i,new QTableWidgetItem("0"));
 
-    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x06,1),7-i) == 1)
+    if (Bitoperationen::zeigeBit( steuerwerk->getRam()->lesen(0x06,1),7-i) == 1)    //Anzeige ob Eingabe oder Ausgabe
                 registerB->setItem(0,i,new QTableWidgetItem("i"));
     else
                 registerB->setItem(0,i,new QTableWidgetItem("o"));

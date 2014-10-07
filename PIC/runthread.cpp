@@ -15,6 +15,6 @@ void RunThread::run()
     {
         steuerwerk->schrittSteuern();
 
-        QThread::msleep(10); //Pause von 1/100 Sekunden zwecks Sichtbarkeit
+        QThread::msleep(100); //Pause von 0,1 Sekunden zwecks Sichtbarkeit
     }
 }
