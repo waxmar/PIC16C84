@@ -9,6 +9,7 @@ public:
     LaufzeitZaehler(Steuerwerk* steuerwerk);
 
     double getLaufzeit();
+    void resetLaufzeit();
     int getZyklen();
 
     void zyklenInkrementieren(int anzahlZyklen);

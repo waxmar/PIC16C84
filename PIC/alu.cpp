@@ -77,20 +77,17 @@ void Alu::ausfuehrenANDWF(int befehl)
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
-// löscht ein Bit eines gewählten Registers
+// löscht ein gewähltes Register
 void Alu::ausfuehrenCLRF(int befehl)
 {
     zaehlerstandErhoehen();
 
-    int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
-    int b = ((befehl & 0x0380) >> 7);
-
-    steuerwerk->getRam()->schreiben(Bitoperationen::loescheBit(f,b), (befehl & 0x007f));
+    steuerwerk->getRam()->schreiben(0, (befehl & 0x007f));
 
     steuerwerk->getLaufzeitZaehler()->zyklenInkrementieren(1);
 }
 
-// löscht ein ausgewähltes Register
+// löscht das W-Register
 void Alu::ausfuehrenCLRW(int befehl)
 {
     zaehlerstandErhoehen();

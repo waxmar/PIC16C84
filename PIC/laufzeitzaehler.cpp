@@ -34,6 +34,11 @@ double LaufzeitZaehler::getLaufzeit()
    return (double)befehlszyklen * 0.4; //Quarzfrequenz
 }
 
+void LaufzeitZaehler::resetLaufzeit()
+{
+    befehlszyklen=0;
+}
+
 int LaufzeitZaehler::getZyklen()
 {
     return befehlszyklen;
