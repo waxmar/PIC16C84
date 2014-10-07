@@ -296,7 +296,7 @@ void Alu::ausfuehrenRLF(int befehl)
 
     int ergebnis = (((f << 1) & 0x00fe) + c);
 
-    if (f & 0x80)
+    if ((f & 0x80) >> 7)
         steuerwerk->getRam()->setzeCBit();
     else
         steuerwerk->getRam()->loescheCBit();
