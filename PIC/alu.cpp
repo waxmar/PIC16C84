@@ -343,7 +343,7 @@ void Alu::ausfuehrenSUBWF(int befehl)
     int w = steuerwerk->getW()->lesen(Speicher::NOADDRESS);
     int ergebnis = f - w;
 
-    if (pruefeCarry(ergebnis))
+    if (ergebnis>=0)
         steuerwerk->getRam()->setzeCBit();
     else
         steuerwerk->getRam()->loescheCBit();
