@@ -294,7 +294,7 @@ void Alu::ausfuehrenRLF(int befehl)
     int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
     int c = Bitoperationen::pruefeBit(Ram::STATUS, 0);
 
-    int ergebnis = (((f << 1) & 0x00fe) + c);
+    int ergebnis = (((f << 1) & 0x00fe) | c);
 
     if ((f & 0x80) >> 7)
         steuerwerk->getRam()->setzeCBit();
@@ -318,7 +318,7 @@ void Alu::ausfuehrenRRF(int befehl)
     int f = steuerwerk->getRam()->lesen(befehl & 0x007f);
     int c = Bitoperationen::pruefeBit(Ram::STATUS, 0);
 
-    int ergebnis = (((f >> 1) & 0x00ef) + (c << 7));
+    int ergebnis = (((f >> 1) & 0x007f) + (c << 7));
 
     if (f & 0x01)
         steuerwerk->getRam()->setzeCBit();
